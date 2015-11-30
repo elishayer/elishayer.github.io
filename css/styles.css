@@ -1,0 +1,45 @@
+/* styles.css
+ * Eli Shayer
+ * ----------
+ * Stylesheet for Eli Shayer's personal website
+ */
+
+body {
+	font-family: sans-serif;
+	background-color: #8c1515;
+	color: #27408b;
+}
+
+.container {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 10%;
+	padding-right: 10%;
+	background-color: #eee6cb;
+	min-height: 100%;
+}
+
+/* ----- portrait styles ----- */
+img#portrait {
+	width: 100%;
+	border-radius: 50%;
+}
+
+/* ----- Styles for the tabs ----- */
+.nav > li > a {
+	text-transform: capitalize;
+}
+
+/* ----- Styles for the social links ----- */
+
+/* center the table */
+#social-links > div > table {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* add padding between cells */
+#social-links > div > table > tbody > tr > td {
+	padding-left: 20px;
+	padding-right: 20px;
+}
