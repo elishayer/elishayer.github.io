@@ -6,16 +6,20 @@
 
  /* ----- general styles ----- */
 
-/* Ensure the body and html reach the bottom of the screen */
-html, body {
-	height: 100%
+/* Ensure the html reaches the bottom of the screen and place
+ * a scrollbar regardless of size so it doesn't enter and exit
+ */
+
+html {
+	height: 100%;
+	overflow-y: scroll;
 }
 
-/* Cardinal red background and royal blue text */
 body {
+	height: 100%;
 	font-family: sans-serif;
-	background-color: #8c1515;
-	color: #27408b;
+	background-color: #8c1515; /* Cardinal red background */
+	color: #27408b; /* Royal blue text */
 }
 
 /* ensure the container takes up the whole screen vertically
@@ -45,20 +49,82 @@ img#portrait {
 }
 
 /* ----- Styles for the tabs ----- */
-.nav > li > a {
+.nav>li>a {
 	text-transform: capitalize;
+}
+
+/* Colors for trophies */
+i.gold {
+	color: #ffd700;
+}
+
+i.silver {
+	color: #c0c0c0;
+}
+
+i.bronze {
+	color: #cd7f32;
+}
+
+/* ----- Styles shared between tab sections ----- */
+#projects>div, #skill-names>div {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #8c1515;
+	border-radius: 8px;
+	background-color: #f6f3e5
+}
+
+#projects>div:hover, #skill-names>div:hover {
+	background-color: #ddcf99;
+}
+
+#projects>div.active, #skill-names>div.active {
+	background-color: #cccccc;
+}
+
+/* ----- Styles for the projects tab ----- */
+#projects>div {
+	min-height: 250px;
+	width: 30%;
+	margin: 1.66666% 5px 1.66666% 5px;
+}
+
+#projects>div>h3, #projects>div>a>h3 {
+	margin-top: 10px;
+	color: #27408b;
+}
+
+/* ----- Styles for the skills tab ----- */
+#skill-names>div {
+	height: 40px;
+	width: 40%;
+	margin: 5px 5% 5px 5%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	vertical-align: center;
+}
+
+#skill-names {
+	padding-top: 0px;
+}
+
+#skills-details>div {
+	font-size: 1.5em;
 }
 
 /* ----- Styles for the social links ----- */
 
 /* center the table */
-#social-links > div > table {
+#social-links>div>table {
 	margin-left: auto;
 	margin-right: auto;
 }
 
 /* add padding between cells */
-#social-links > div > table > tbody > tr > td {
+#social-links>div>table>tbody>tr>td {
 	padding-left: 20px;
 	padding-right: 20px;
 }
+e
