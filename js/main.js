@@ -39,15 +39,18 @@ angular.module('es-app', [])
 		$scope.socialLinks = [
 			{
 				name : "LinkedIn",
-				link : "https://www.linkedin.com/in/eli-shayer-62476b9b"
+				link : "https://www.linkedin.com/in/eli-shayer-62476b9b",
+				fa   : "fa-linkedin"
 			},
 			{
 				name : "GitHub",
-				link : "https://github.com/elishayer"
+				link : "https://github.com/elishayer",
+				fa   : "fa-github"
 			},
 			{
 				name : "Twitter",
-				link : "https://twitter.com/elishayer"
+				link : "https://twitter.com/elishayer",
+				fa   : "fa-twitter"
 			}
 		]
 

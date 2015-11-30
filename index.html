@@ -9,6 +9,9 @@
 
 		<!-- Site stylesheet -->
 		<link rel="stylesheet"  href="./css/styles.css">
+
+		<!-- Font Awesome stylesheet via CDN -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	</head>
 	<body ng-controller="es-control">
 		<div class="container">
@@ -45,7 +48,9 @@
 						<tbody>
 							<tr>
 								<td ng-repeat="social in socialLinks">
-									<a href="{{ social.link }}" ng-bind="social.name"></a>
+									<a href="{{ social.link }}">
+										<i class="fa {{ social.fa }} fa-3x"></i>
+									</a>
 								</td>
 							</tr>
 						</tbody>
