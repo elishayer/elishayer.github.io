@@ -4,19 +4,38 @@
  * Stylesheet for Eli Shayer's personal website
  */
 
+ /* ----- general styles ----- */
+
+/* Ensure the body and html reach the bottom of the screen */
+html, body {
+	height: 100%
+}
+
+/* Cardinal red background and royal blue text */
 body {
 	font-family: sans-serif;
 	background-color: #8c1515;
 	color: #27408b;
 }
 
+/* ensure the container takes up the whole screen vertically
+ * small padding to the top and bottom,
+ * 10% margin on the left and right
+ * Sandstone 50% background
+ */
 .container {
+	min-height: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
 	padding-left: 10%;
 	padding-right: 10%;
 	background-color: #eee6cb;
-	min-height: 100%;
+}
+
+/* Small padding on top and bottom of each row */
+.row {
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 /* ----- portrait styles ----- */
