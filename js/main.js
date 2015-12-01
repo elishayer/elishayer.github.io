@@ -40,34 +40,194 @@
 					'<ul class="nav nav-tabs nav-justified">',
 						'{{#each this}}',
 						'<li role="presentation" id="{{ name }}-tab">',
-							'<a href="#{{ name }}">{{ name }} <i class="fa fa-{{icon}}"></i></a>',
+							'<a href="#" tab="{{ name }}">{{ name }} <i class="fa fa-{{icon}}"></i></a>',
 						'</li>',
 						'{{/each}}',
 					'<ul>',
 				'</div>'
 			].join('\n'),
 			data    : [
-				{
-					name: 'about',
-					icon: 'info-circle'
-				},
-				{
-					name: 'projects',
-					icon: 'tasks'
-				},
-				{
-					name: 'skills',
-					icon: 'laptop'
-				}
+				{ name: 'about', icon: 'info-circle' },
+				{ name: 'projects', icon: 'tasks' },
+				{ name: 'skills', icon: 'laptop' }
 			]
 		},
-		// TODO
 		about: {
-			template: [''
+			template: [
+				'{{#with subtabs}}',
+				'<div class="col-xs-12">',
+					'<ul class="nav nav-tabs nav-justified">',
+						'{{#each this}}',
+						'<li role="presentation" id="{{ name }}-subtab">',
+							'<a href="#" subtab="{{ name }}">{{ name }} <i class="fa fa-{{icon}}"></i></a>',
+						'</li>',
+						'{{/each}}',
+					'<ul>',
+				'</div>',
+				'{{/with}}',
+				'<div class="col-xs-12" id="history">TODO</div>',
+				'{{#with history}}',
+				'{{/with}}',
+				'{{#with school}}',
+				'<div id="school">',
+					'{{#each schools}}',
+					'<div class="col-xs-12 col-sm-6">',
+						'<h3>{{ name }}</h3>',
+						'<h4>Class of {{ grad }}{{#if note}} &ndash; {{note}}{{/if}}</h4>',
+						'<div class="row">',
+							'<div class="col-xs-{{ size.classes }}">',
+								'<p class="header">Classes</p>',
+								'<ul class="no-pad-ul">',
+									'{{#each classes}}',
+									'<li>',
+									'{{#if time}}',
+										'<a href="#" data-container="body" data-toggle="tooltip" data-placement="right" ',
+										'title="{{#if title}}{{ title }} | {{/if}}{{ time }}">{{ name }}</a>',
+									'{{else}}',
+										'{{ name }}',
+									'{{/if}}',
+									'</li>',
+									'{{/each}}',
+								'</ul>',
+							'</div>',
+							'<div class="col-xs-{{ size.activities }}">',
+								'<p class="header">Activities</p>',
+								'<ul class="no-pad-ul">',
+									'{{#each activities}}',
+									'<li>',
+									'{{#if details.length}}',
+										'<a href="#" data-container="body" data-toggle="popover" data-placement="right" ',
+										'data-trigger="focus" data-html="true" data-title="Positions and Accomplishments" data-content="',
+											'<ul class=&quot;no-pad-ul&quot;>',
+												'{{#each details}}',
+													'<li>{{ this }}</li>',
+												'{{/each}}',
+											'</ul>',
+										'">{{ name }} &#x25b6;</a>',
+									'{{else}}',
+										'{{ name }}',
+									'{{/if}}',
+									'</li>',
+									'{{/each}}',
+								'</ul>',
+							'</div>',
+						'</div>',
+					'</div>',
+					'{{/each}}',
+				'</div>',
+				'{{/with}}',
+				'{{#with awards}}',
+				'<div class="col-xs-12" id="awards">',
+					'{{#each this}}',
+						'<h3>{{ award }}{{#if date}}, {{ date }}{{/if}}</h3>',
+						'<p>{{ description }}</p>',
+					'{{/each}}',
+				'</div>',
+				'{{/with}}',
+				'{{#with other}}',
+				'<div class="col-xs-12" id="other">',
+					'{{#each this}}',
+						'<h3>{{ name }}</h3>',
+						'<p>{{ description }}</p>',
+					'{{/each}}',
+				'</div>',
+				'{{/with}}',
 			].join('\n'),
-			data    : [
-
-			]
+			data    : {
+				subtabs: [
+					{ name: 'history', icon: 'history' },
+					{ name: 'school', icon: 'graduation-cap' },
+					{ name: 'awards', icon: 'trophy' },
+					{ name: 'other', icon: 'plus' }
+				],
+				history: [
+					{}
+				],
+				school: {
+					schools: [
+						{
+							name: 'Stanford University',
+							size: { classes: '4', activities: '8' },
+							grad: '2018',
+							classes: [
+								{ name: 'CS 106A', title: 'Programming Methodology', time: 'Freshman Autumn' },
+								{ name: 'CS 106X', title: 'Programming Abstractions (Accelerated)', time: 'Freshman Winter' },
+								{ name: 'CS 107', title: 'Computer Organization and Systems', time: 'Freshman Spring' },
+								{ name: 'CS 42', title: 'Callback Me Maybe: Contemporary JavaScript', time: 'Freshman Spring' },
+								{ name: 'CS 103', title: 'Mathematical Foundations of Computing', time: 'Sophomore Autumn' },
+								{ name: 'MATH 51', title: 'Linear Algebra and Differential Calculus of Several Variables', time: 'Freshman Autumn' },
+								{ name: 'MATH 52', title: 'Integral Calculus of Several Variables', time: 'Freshman Winter' },
+								{ name: 'MATH 53', title: 'Ordinary Differential Equations with Linear Algebra', time: 'Freshman Spring' },
+								{ name: 'STATS 116', title: 'Theory of Probability', time: 'Sophomore Autumn' },
+								{ name: 'PHYSICS 41', title: 'Mechanics', time: 'Freshman Winter' },
+								{ name: 'THINK 11', title: 'Bioethical Challenges of New Technology', time: 'Freshman Winter' },
+								{ name: 'PWR 1CK', title: 'Investigation the News: Journalism, Technology, & the Future', time: 'Freshman Autumn' },
+								{ name: 'PWR 2AH', title: 'Ethnic Narratives and the Rhetoric of American Identity', time: 'Sophomore Autumn' },
+								{ name: 'FRENLANG 3', title: 'First-Year French, Third time', time: 'Freshman Spring' },
+								{ name: 'HISTORY 50A', title: 'Colonial and Revolutionary America', time: 'Freshman Spring' },
+								{ name: 'HISTORY 50C', title: 'The United States in the Twentieth Century', time: 'Sophomore Autumn' },
+							],
+							activities: [
+								{ name: 'Stanford Sports Analytics Club', details: [ 'Tech Officer, 2015-2016' ] },
+								{ name: 'Stanford Club Ultimate Frisbee', details: [] },
+								{ name: 'Stanford Democrats', details: [ 'Associate, 2015-2016' ] },
+								{ name: 'Stanford for Bernie', details: [ 'Events Team, 2015-2016' ] },
+								{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2015' ] },
+								{ name: 'Intramural Sports', details: [] }
+							]
+						},
+						{
+							name: 'West Anchorage High School',
+							size: { classes: '4', activities: '8' },
+							grad: '2014',
+							note: 'Salutatorian',
+							classes: [
+								{ name: 'AP Chemistry', time: 'Junior' },
+								{ name: 'AP Biology', time: 'Senior' },
+								{ name: 'AP Physics B', time: 'Junior' },
+								{ name: 'AP Calculus AB', time: 'Sophomore' },
+								{ name: 'AP Calculus BC', time: 'Senior' },
+								{ name: 'AP Statistics', time: 'Junior' },
+								{ name: 'AP US History', time: 'Sophomore' },
+								{ name: 'AP Microecon', time: 'Junior' },
+								{ name: 'AP Macroecon', time: 'Senior' },
+								{ name: 'AP Government', time: 'Junior' },
+								{ name: 'AP Psychology', time: 'Senior' },
+								{ name: 'IB English', time: 'Junior' },
+								{ name: 'AP Literature', time: 'Senior' },
+							],
+							activities: [
+								{ name: 'Cross Country Running', details: [ 'Captain, 2011-2013', 'Varsity Letter 2010-2013', 'State Qualifier 2011-2012', 'Good Sport Award, 2011', 'Steve Prefontaine Award, 2011-2012' ] },
+								{ name: 'Cross Country Skiing', details: [ 'Captain, 2014', 'Varsity Letter 2011-2014', 'State Qualifier 2011-2013', 'Good Sport Award, 2011-2012', 'Most Inspirational Boy, 2014' ] },
+								{ name: 'Track and Field', details: [ 'Captain, 2014', 'Varsity Letter, 2011-2014', 'State Qualifier, 2011-2014' ] },
+								{ name: 'Parent-Teacher-Student Association', details: [ 'Secretary, 2012-2014', 'Student Rep, 2011-2012' ] },
+								{ name: 'National Honor Society', details: [ 'Treasurer, 2013' ] },
+								{ name: 'Chess Club', details: [] },
+								{ name: 'Laughter Club', details: [] },
+							]
+						}
+					]
+				},
+				awards: [
+					{ award: 'Graphicacy Major League Data Challenge', date: 'November 2015', description: 'TODO' },
+					{ award: 'Boothe Prize', date: 'May 2015', description: 'TODO' },
+					{ award: 'National AP Scholar', date: 'August 2014', description: 'TODO' },
+					{ award: 'National Merit Scholar', date: 'May 2014', description: 'TODO' },
+					{ award: 'Presidential Scholar Semifinalist', date: 'April 2014', description: 'TODO' },
+				],
+				other: [
+					{ name: 'Research Science Institute', description: 'TODO' },
+					{ name: 'American Invitational Mathematics Examination', description: 'TODO' },
+					{ name: 'American Mathematics Competition', description: 'TODO' },
+					{ name: 'MathCounts Nationals', description: 'TODO' },
+					{ name: 'Bartlett Invitational Mathematics Competition', description: 'TODO' },
+					{ name: 'Anchorage Youth Symphony', description: 'TODO' },
+					{ name: 'Boy Scouts of America', description: 'TODO' },
+					{ name: 'National Youth Leadership Training', description: 'TODO' },
+					{ name: 'Conference of Young Alaskans', description: 'TODO' },
+					{ name: 'Gifted Mentorship', description: 'TODO' },
+				]
+			}
 		},
 		projects: {
 			template: [
@@ -309,11 +469,11 @@
 	setActiveTab('about');
 
 	// event listener for the tabs to set the active tab and visible content
-	$('#tabs a').click(function(event) {
-		var href = $(event.target).attr('href');
-		if (href) {
+	$('#tabs>div>ul>li>a').click(function(event) {
+		var tab = $(event.target).attr('tab');
+		if (tab) {
 			// set the active tab
-			setActiveTab(href.substring(1));
+			setActiveTab(tab);
 		}
 	});
 
@@ -394,7 +554,44 @@
 		if (activeSkillName && !$(event.target).is($('#skill-names>div'))) {
 			setActiveSkillDetail();
 		}
-
 	});
+
+	// set the active about subtab and show only the relevant content
+	function setActiveAboutSubtab(activeSubtab) {
+		$.each(sections.about.data.subtabs, function(index, subtab) {
+			var isActive = subtab.name === activeSubtab;
+
+			// set the active tab
+			$('#' + subtab.name + '-subtab').toggleClass('active', isActive);
+
+			// display only the active content
+			$('#' + subtab.name).toggle(isActive);
+		});
+	}
+
+	// initialize the about subtabs to history
+	setActiveAboutSubtab('history');
+
+	// event listener for the subtabs to set the active subtab and visible content
+	$('#about>div>ul>li>a').click(function(event) {
+		var subtab = $(event.target).attr('subtab');
+		if (subtab) {
+			// set the active subtab
+			setActiveAboutSubtab(subtab);
+		}
+	});
+
+	// stop scrolling from occuring for empty links
+	$('a').click(function(event) {
+		if($(event.target).attr('href') === '#') {
+			event.preventDefault();
+		}
+	});
+
+	// enable all popovers
+	$('[data-toggle="popover"]').popover();
+
+	// enable all tooltips
+	$('[data-toggle="tooltip"]').tooltip();
 
 })(window, document);

@@ -83,6 +83,23 @@ i.bronze {
 	background-color: #cccccc;
 }
 
+/* ----- Styles for the about tab ----- */
+#school p.header {
+	font-weight: bold;
+}
+
+.no-pad-ul>li {
+	list-style-type: none;
+}
+
+.no-pad-ul {
+	padding-left: 0px;
+}
+
+a[data-toggle="popover"], a[data-toggle="tooltip"] {
+	color: inherit;
+}
+
 /* ----- Styles for the projects tab ----- */
 #projects>div {
 	min-height: 250px;
@@ -104,6 +121,7 @@ i.bronze {
 	padding-bottom: 10px;
 	text-align: center;
 	vertical-align: center;
+	cursor: pointer;
 }
 
 #skill-names {
