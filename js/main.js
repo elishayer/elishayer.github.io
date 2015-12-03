@@ -82,7 +82,7 @@
 								'<h3>{{ name }}</h3>',
 								'<h4>Class of {{ grad }}{{#if note}} &ndash; {{note}}{{/if}}</h4>',
 								'<div class="row">',
-									'<div class="col-xs-5 classes">',
+									'<div class="col-xs-12 col-sm-5 classes">',
 										'<p class="header">Classes</p>',
 										'<ul class="no-pad-ul">',
 											'{{#each classes}}',
@@ -90,7 +90,7 @@
 											'{{/each}}',
 										'</ul>',
 									'</div>',
-									'<div class="col-xs-7 activities">',
+									'<div class="col-xs-12 col-sm-7 activities">',
 										'<p class="header">Activities</p>',
 										'<ul class="no-pad-ul">',
 											'{{#each activities}}',
@@ -350,6 +350,26 @@
 		});
 	});
 
+	// a map from project id to name
+	var projectIdMap = {};
+
+	// for each project
+	$.each(sections.projects.data, function(index, datum) {
+		// populate the project id map
+		projectIdMap[datum.id] = datum.name;
+
+		// join the tools lists with ndashes
+		datum.tools = datum.tools.join(' &ndash; ');
+	});
+
+	// for each activity in each school
+	$.each(sections.about.data.schools, function(schoolIndex, school) {
+		$.each(school.activities, function(activityIndex, activity) {
+			// join into a string delimited by a pipe character
+			activity.details = activity.details.join('|');
+		});
+	});
+
 	// helper to concatenate a list with proper syntax,
 	// with an optional mapping from the list contents to other strings
 	function concatenateList(list, map) {
@@ -426,26 +446,6 @@
 			concatenateList(textualSkills) + '.');
 	});
 
-	// a map from project id to name
-	var projectIdMap = {};
-
-	// for each project
-	$.each(sections.projects.data, function(index, datum) {
-		// populate the project id map
-		projectIdMap[datum.id] = datum.name;
-
-		// join the tools lists with ndashes
-		datum.tools = datum.tools.join(' &ndash; ');
-	});
-
-	// for each activity in each school
-	$.each(sections.about.data.schools, function(schoolIndex, school) {
-		$.each(school.activities, function(activityIndex, activity) {
-			// join into a string delimited by a pipe character
-			activity.details = activity.details.join('|');
-		});
-	});
-
 	// For each section, compile the Handlebars template and render it with the
 	// associated data. Then place the resulting html in the DOM
 	for (section in sections) {
@@ -453,36 +453,45 @@
 		var template = sections[section].template;
 		var data = sections[section].data;
 
-		// compile the template and pass in the data
+		// compile the template, pass in the data, and render to the DOM
 		var html = Handlebars.compile(template)(data);
-
 		$('#' + section).html(html);
 	}
 
-	// set the active tab and determine which content to display
-	function setActiveTab(activeTab) {
-		$.each(sections.tabs.data, function(index, tab) {
-			var isActive = tab.name === activeTab;
+	// general function to set tab listeners for any set of tabs
+	function setTabListener(tabs, getName, type, selector, initial) {
+		// toggle a single tab to active and all others to hidden
+		function setActive(activeName) {
+			$.each(tabs, function() {
+				// get the name and determine whether it is active
+				var name = getName(this);
+				var isActive = name === activeName;
 
-			// set the active tab
-			$('#' + tab.name + '-tab').toggleClass('active', isActive);
+				// set the active tab and display only the active content
+				$('#' + name + '-' + type).toggleClass('active', isActive);
+				$('#' + name).toggle(isActive);
+			});
+		}
 
-			// display only the active content
-			$('#' + tab.name).toggle(isActive);
-		});
+		// initialize the active tab
+		setActive(initial);
+
+		// event listener for user seletion of active tab
+		$(selector).click(function() {
+			var selection = $(this).attr(type);
+			if (selection) {
+				setActive(selection);
+			}
+		})
 	}
 
-	// initialize the active tab to be the About tab
-	setActiveTab('about');
+	// set the tab listener for the main set of tabs
+	setTabListener(sections.tabs.data, function(tab) { return tab.name; },
+		'tab', '#tabs>div>ul>li>a', 'about');
 
-	// event listener for the tabs to set the active tab and visible content
-	$('#tabs>div>ul>li>a').click(function(event) {
-		var tab = $(event.target).attr('tab');
-		if (tab) {
-			// set the active tab
-			setActiveTab(tab);
-		}
-	});
+	// set the tab listener for the subtabs in the about tab
+	setTabListener(Object.keys(sections.about.data), function(tab) { return tab.toString(); },
+		'subtab', '#about>div>ul>li>a', 'schools');	
 
 	// set the active skills content area and skill name
 	function setActiveSkillDetail(activeDetail, isClick) {
@@ -560,31 +569,6 @@
 	$(window).click(function(event) {
 		if (activeSkillName && !$(event.target).is($('#skill-names>div'))) {
 			setActiveSkillDetail();
-		}
-	});
-
-	// set the active about subtab and show only the relevant content
-	function setActiveAboutSubtab(activeSubtab) {
-		$.each(Object.keys(sections.about.data), function(index, name) {
-			var isActive = name === activeSubtab;
-
-			// set the active tab
-			$('#' + name + '-subtab').toggleClass('active', isActive);
-
-			// display only the active content
-			$('#' + name).toggle(isActive);
-		});
-	}
-
-	// initialize the about subtabs to history
-	setActiveAboutSubtab('schools');
-
-	// event listener for the subtabs to set the active subtab and visible content
-	$('#about>div>ul>li>a').click(function(event) {
-		var subtab = $(event.target).attr('subtab');
-		if (subtab) {
-			// set the active subtab
-			setActiveAboutSubtab(subtab);
 		}
 	});
 
