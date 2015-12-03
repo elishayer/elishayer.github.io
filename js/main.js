@@ -6,7 +6,7 @@
  */
 
 (function(window, document, undefined) {
-	// data for the tabs and corresponding data and templates
+	// ------------------------------------------ DATA AND TEMPLATES
 	sections = {
 		intro:  {
 			template: [
@@ -54,22 +54,18 @@
 		},
 		about: {
 			// data and template to be appended with the data from subtabs
-			data: {
-				subtabs: []
-			},
+			data: { subtabs: [] },
 			template: [
 				'<hr class="tab-hr"/>',
-				'{{#with subtabs}}',
 				'<div class="col-xs-12">',
 					'<ul class="nav nav-tabs nav-justified">',
-						'{{#each this}}',
+						'{{#each subtabs}}',
 						'<li role="presentation" id="{{ name }}-subtab">',
 							'<a href="#" subtab="{{ name }}">{{ name }} <i class="fa fa-{{ icon }}"></i></a>',
 						'</li>',
 						'{{/each}}',
 					'<ul>',
 				'</div>',
-				'{{/with}}',
 			].join(''),
 			subtabs: [
 				{
@@ -336,6 +332,7 @@
 		},
 	}
 
+	// ------------------------------------------ DATA AND TEMPLATE ADJUSTMENTS
 	// append the about subtabs data to the about template and data
 	$.each(sections.about.subtabs, function() {
 		// push to the template in a Handlebars with wrapper
@@ -354,22 +351,23 @@
 	var projectIdMap = {};
 
 	// for each project
-	$.each(sections.projects.data, function(index, datum) {
+	$.each(sections.projects.data, function() {
 		// populate the project id map
-		projectIdMap[datum.id] = datum.name;
+		projectIdMap[this.id] = this.name;
 
 		// join the tools lists with ndashes
-		datum.tools = datum.tools.join(' &ndash; ');
+		this.tools = this.tools.join(' &ndash; ');
 	});
 
 	// for each activity in each school
-	$.each(sections.about.data.schools, function(schoolIndex, school) {
-		$.each(school.activities, function(activityIndex, activity) {
+	$.each(sections.about.data.schools, function() {
+		$.each(this.activities, function() {
 			// join into a string delimited by a pipe character
-			activity.details = activity.details.join('|');
+			this.details = this.details.join('|');
 		});
 	});
 
+	// ------------------------------------------ HANDLEBARS HELPERS
 	// helper to concatenate a list with proper syntax,
 	// with an optional mapping from the list contents to other strings
 	function concatenateList(list, map) {
@@ -388,48 +386,32 @@
 		} else {
 			var result = '';
 			for (var i = 0; i < list.length; i++) {
-				if (i < list.length - 1) {
-					result += list[i] + ', ';
-				} else {
-					result += 'and ' + list[i];
-				}
+				result += i < list.length - 1 ? list[i] + ', ' : 'and ' + list[i];
 			}
 			return result;
 		}
 	}
 
+	// functions to convert lists to English phrases, all lists are length >=1
 	var categoryData = [
 		{
 			key: 'classes',
 			textualize: function(list, skill) {
-				if (list.length) {
-					return 'in the ' + (list.length === 1 ? 'class' : 'classes') +
-						' ' + concatenateList(list);
-				} else {
-					return '';
-				}
+				return 'in the ' + (list.length === 1 ? 'class' : 'classes') +
+					' ' + concatenateList(list);
 			}
 		},
 		{
 			key: 'projects',
 			textualize: function(list, skill) {
-				if (list.length) {
-					return 'while working on the ' +
-						concatenateList(list, projectIdMap) + ' ' +
-						(list.length === 1 ? 'project' : 'projects');						
-				} else {
-					return '';
-				}
+				return 'while working on the ' + concatenateList(list, projectIdMap) +
+					' ' + (list.length === 1 ? 'project' : 'projects');						
 			}
 		},
 		{
 			key: 'jobs',
 			textualize: function(list, skill) {
-				if (list.length) {
-					return 'while working at ' + concatenateList(list);
-				} else {
-					return '';
-				}
+				return 'while working at ' + concatenateList(list);
 			}
 		}
 	];
@@ -437,15 +419,16 @@
 	// Handlebars helpers
 	Handlebars.registerHelper('skillsDetail', function(data) {
 		var textualSkills = [];
-		$.each(categoryData, function(index, category) {
-			if (data[category.key].length) {
-				textualSkills.push(category.textualize(data[category.key], data.tool));
+		$.each(categoryData, function() {
+			if (data[this.key].length) {
+				textualSkills.push(this.textualize(data[this.key], data.tool));
 			}
 		});
 		return new Handlebars.SafeString('I used <b>' + data.tool + '</b> ' +
 			concatenateList(textualSkills) + '.');
 	});
 
+	// ------------------------------------------ HANDLEBARS COMPILATION AND RENDERING
 	// For each section, compile the Handlebars template and render it with the
 	// associated data. Then place the resulting html in the DOM
 	for (section in sections) {
@@ -458,6 +441,7 @@
 		$('#' + section).html(html);
 	}
 
+	// ------------------------------------------ TAB LISTENERS
 	// general function to set tab listeners for any set of tabs
 	function setTabListener(tabs, getName, type, selector, initial) {
 		// toggle a single tab to active and all others to hidden
@@ -493,18 +477,19 @@
 	setTabListener(Object.keys(sections.about.data), function(tab) { return tab.toString(); },
 		'subtab', '#about>div>ul>li>a', 'schools');	
 
+	// ------------------------------------------ ACTIVE SKILL SELECTION
 	// set the active skills content area and skill name
 	function setActiveSkillDetail(activeDetail, isClick) {
 		// keep track of whether any skill is set as active
 		var skillIsActive = false;
-		$.each(sections.skills.data, function(index, skill) {
-			var isActive = skill.id === activeDetail;
+		$.each(sections.skills.data, function() {
+			var isActive = this.id === activeDetail;
 
 			// true if any skill has been set as active
 			skillIsActive = skillIsActive || isActive;
 
 			// display only the active detail
-			$('#' + skill.id + '-details').toggle(isActive);
+			$('#' + this.id + '-details').toggle(isActive);
 		});
 
 		// set the instructions to visible if no details selected
@@ -547,15 +532,15 @@
 
 	// event listener for the skill details
 	$('#skill-names>div').on({
-		click: function(event) {
+		click: function() {
 			skillClick = true;
-			setActiveSkillDetail($(event.target).attr('id'), skillClick);
+			setActiveSkillDetail($(this).attr('id'), skillClick);
 		},
-		mouseenter: function(event) {
+		mouseenter: function() {
 			skillClick = false;
-			setActiveSkillDetail($(event.target).attr('id'), skillClick);
+			setActiveSkillDetail($(this).attr('id'), skillClick);
 		},
-		mouseleave: function(event) {
+		mouseleave: function() {
 			if (activeSkillName) {
 				setActiveSkillDetail(activeSkillName, true);
 			} else if (!skillClick) {
@@ -566,26 +551,17 @@
 
 	// any click on the window that is not on a skill name clears the
 	// active skill name selection, if there is such a name
-	$(window).click(function(event) {
-		if (activeSkillName && !$(event.target).is($('#skill-names>div'))) {
+	$(window).click(function() {
+		if (activeSkillName && !$(this).is($('#skill-names>div'))) {
 			setActiveSkillDetail();
 		}
 	});
 
-	// stop scrolling from occuring for empty links
-	$('a').click(function(event) {
-		if ($(event.target).attr('href') === '#') {
-			event.preventDefault();
-		}
-	});
-
+	// ------------------------------------------ TOOLTIPS
 	// activates all tooltips that are children of parent, sets title with titleFn
 	function activateTooltips(parent, titleFn) {
 		$(parent + ' [data-toggle="tooltip"]').tooltip({
-			container: 'body',
-			placement: 'right',
-			html: true,
-			title: titleFn
+			container: 'body', placement: 'right', html: true, title: titleFn
 		});
 	}
 
@@ -605,4 +581,11 @@
 		return title + (title.length && time.length ? '<hr class="min"/>' : '') + time;
 	});
 
+	// ------------------------------------------ GENERAL LISTENER
+	// stop scrolling from occuring for empty links
+	$('a').click(function(event) {
+		if ($(this).attr('href') === '#') {
+			event.preventDefault();
+		}
+	});
 })(window, document);
