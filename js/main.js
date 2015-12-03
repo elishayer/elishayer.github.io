@@ -70,7 +70,7 @@
 			subtabs: [
 				{
 					name: 'schools',
-					icon: 'info-circle',
+					icon: 'graduation-cap',
 					template: [
 						'<div id="schools">',
 							'{{#each this}}',
@@ -551,8 +551,8 @@
 
 	// any click on the window that is not on a skill name clears the
 	// active skill name selection, if there is such a name
-	$(window).click(function() {
-		if (activeSkillName && !$(this).is($('#skill-names>div'))) {
+	$(window).click(function(event) {
+		if (activeSkillName && !$(event.target).is($('#skill-names>div'))) {
 			setActiveSkillDetail();
 		}
 	});
