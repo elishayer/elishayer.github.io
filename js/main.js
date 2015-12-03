@@ -20,7 +20,7 @@
 					'<p>{{{ this }}}</p>',
 					'{{/each}}',
 				'</div>',
-			].join('\n'),
+			].join(''),
 			data    : {
 				image: { src: './images/eli-shayer-square.jpg', alt: 'Eli Shayer', id : 'portrait' },
 				content: {
@@ -45,7 +45,7 @@
 						'{{/each}}',
 					'<ul>',
 				'</div>'
-			].join('\n'),
+			].join(''),
 			data    : [
 				{ name: 'about', icon: 'info-circle' },
 				{ name: 'projects', icon: 'tasks' },
@@ -53,6 +53,10 @@
 			]
 		},
 		about: {
+			// data and template to be appended with the data from subtabs
+			data: {
+				subtabs: []
+			},
 			template: [
 				'<hr class="tab-hr"/>',
 				'{{#with subtabs}}',
@@ -66,152 +70,152 @@
 					'<ul>',
 				'</div>',
 				'{{/with}}',
-				/*'<div class="col-xs-12" id="history">TODO</div>',
-				'{{#with history}}',
-				'{{/with}}',*/
-				'{{#with schools}}',
-				'<div id="schools">',
-					'{{#each this}}',
-					'<div class="col-xs-12 col-md-6">',
-						'<h3>{{ name }}</h3>',
-						'<h4>Class of {{ grad }}{{#if note}} &ndash; {{note}}{{/if}}</h4>',
-						'<div class="row">',
-							'<div class="col-xs-5 classes">',
-								'<p class="header">Classes</p>',
-								'<ul class="no-pad-ul">',
-									'{{#each classes}}',
-									'<li><a href="#" data-toggle="tooltip" c-title="{{ title }}" c-time="{{ time }}">{{ name }} <i class="fa fa-caret-right"></i></a></li>',
-									'{{/each}}',
-								'</ul>',
+			].join(''),
+			subtabs: [
+				{
+					name: 'schools',
+					icon: 'info-circle',
+					template: [
+						'<div id="schools">',
+							'{{#each this}}',
+							'<div class="col-xs-12 col-md-6">',
+								'<h3>{{ name }}</h3>',
+								'<h4>Class of {{ grad }}{{#if note}} &ndash; {{note}}{{/if}}</h4>',
+								'<div class="row">',
+									'<div class="col-xs-5 classes">',
+										'<p class="header">Classes</p>',
+										'<ul class="no-pad-ul">',
+											'{{#each classes}}',
+											'<li><a href="#" data-toggle="tooltip" c-title="{{ title }}" c-time="{{ time }}">{{ name }} <i class="fa fa-caret-right"></i></a></li>',
+											'{{/each}}',
+										'</ul>',
+									'</div>',
+									'<div class="col-xs-7 activities">',
+										'<p class="header">Activities</p>',
+										'<ul class="no-pad-ul">',
+											'{{#each activities}}',
+											'<li>',
+												'{{#if details.length}}',
+													'<a href="#" data-toggle="tooltip" details="{{ details }}">{{ name }} <i class="fa fa-caret-right"></i></a>',
+												'{{else}}',
+													'{{ name }}',
+												'{{/if}}',
+											'</li>',
+											'{{/each}}',
+										'</ul>',
+									'</div>',
+								'</div>',
 							'</div>',
-							'<div class="col-xs-7 activities">',
-								'<p class="header">Activities</p>',
-								'<ul class="no-pad-ul">',
-									'{{#each activities}}',
-									'<li>',
-										'{{#if details.length}}',
-											'<a href="#" data-toggle="tooltip" details="{{ details }}">{{ name }} <i class="fa fa-caret-right"></i></a>',
-										'{{else}}',
-											'{{ name }}',
-										'{{/if}}',
-									'</li>',
-									'{{/each}}',
-								'</ul>',
-							'</div>',
+							'{{/each}}',
 						'</div>',
-					'</div>',
-					'{{/each}}',
-				'</div>',
-				'{{/with}}',
-				'{{#with awards}}',
-				'<div class="col-xs-12" id="awards">',
-					'{{#each this}}',
-						'<h3>{{ name }}</h3>',
-						'<h4>{{ date }}</h4>',
-						'<p>{{ description }}</p>',
-					'{{/each}}',
-				'</div>',
-				'{{/with}}',
-				'{{#with other}}',
-				'<div class="col-xs-12" id="other">',
-					'{{#each this}}',
-						'<h3>{{ name }}</h3>',
-						'<h4>{{ date }}</h4>',
-						'<p>{{{ description }}}</p>',
-					'{{/each}}',
-				'</div>',
-				'{{/with}}',
-			].join('\n'),
-			data    : {
-				subtabs: [
-					//{ name: 'history', icon: 'history' },
-					{ name: 'schools', icon: 'graduation-cap' },
-					{ name: 'awards', icon: 'trophy' },
-					{ name: 'other', icon: 'plus' }
-				],
-				history: [
-					{}
-				],
-				schools: [
-					{
-						name: 'Stanford University',
-						grad: '2018',
-						classes: [
-							{ name: 'CS 106A', title: 'Programming Methodology', time: 'Freshman Autumn' },
-							{ name: 'CS 106X', title: 'Programming Abstractions (Accelerated)', time: 'Freshman Winter' },
-							{ name: 'CS 107', title: 'Computer Organization and Systems', time: 'Freshman Spring' },
-							{ name: 'CS 42', title: 'Callback Me Maybe: Contemporary JavaScript', time: 'Freshman Spring' },
-							{ name: 'CS 103', title: 'Mathematical Foundations of Computing', time: 'Sophomore Autumn' },
-							{ name: 'MATH 51', title: 'Linear Algebra and Differential Calculus of Several Variables', time: 'Freshman Autumn' },
-							{ name: 'MATH 52', title: 'Integral Calculus of Several Variables', time: 'Freshman Winter' },
-							{ name: 'MATH 53', title: 'Ordinary Differential Equations with Linear Algebra', time: 'Freshman Spring' },
-							{ name: 'STATS 116', title: 'Theory of Probability', time: 'Sophomore Autumn' },
-							{ name: 'PHYSICS 41', title: 'Mechanics', time: 'Freshman Winter' },
-							{ name: 'THINK 11', title: 'Bioethical Challenges of New Technology', time: 'Freshman Winter' },
-							{ name: 'PWR 1CK', title: 'Investigation the News: Journalism, Technology, & the Future', time: 'Freshman Autumn' },
-							{ name: 'PWR 2AH', title: 'Ethnic Narratives and the Rhetoric of American Identity', time: 'Sophomore Autumn' },
-							{ name: 'FRENLANG 3', title: 'First-Year French, Third time', time: 'Freshman Spring' },
-							{ name: 'HISTORY 50A', title: 'Colonial and Revolutionary America', time: 'Freshman Spring' },
-							{ name: 'HISTORY 50C', title: 'The United States in the Twentieth Century', time: 'Sophomore Autumn' },
-						],
-						activities: [
-							{ name: 'Stanford Sports Analytics Club', details: [ 'Tech Officer, 2015-2016' ] },
-							{ name: 'Stanford Club Ultimate Frisbee', details: [] },
-							{ name: 'Stanford Democrats', details: [ 'Associate, 2015-2016' ] },
-							{ name: 'Stanford for Bernie', details: [ 'Events Team, 2015-2016' ] },
-							{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2016' ] },
-							{ name: 'Intramural Sports', details: [] }
-						]
-					},
-					{
-						name: 'West Anchorage High School',
-						grad: '2014',
-						note: 'Salutatorian',
-						classes: [
-							{ name: 'AP Chemistry', time: 'Junior' },
-							{ name: 'AP Biology', time: 'Senior' },
-							{ name: 'AP Physics B', time: 'Junior' },
-							{ name: 'AP Calculus AB', time: 'Sophomore' },
-							{ name: 'AP Calculus BC', time: 'Senior' },
-							{ name: 'AP Statistics', time: 'Junior' },
-							{ name: 'AP US History', time: 'Sophomore' },
-							{ name: 'AP Microeconomics', time: 'Junior' },
-							{ name: 'AP Macroeconomics', time: 'Senior' },
-							{ name: 'AP Government', time: 'Junior' },
-							{ name: 'AP Psychology', time: 'Senior' },
-							{ name: 'IB English', time: 'Junior' },
-							{ name: 'AP Literature', time: 'Senior' },
-						],
-						activities: [
-							{ name: 'Cross Country Running', details: [ 'Captain, 2011-2013', 'Varsity Letter 2010-2013', 'State Qualifier 2011-2012', 'Good Sport Award, 2011', 'Steve Prefontaine Award, 2011-2012' ] },
-							{ name: 'Cross Country Skiing', details: [ 'Captain, 2014', 'Varsity Letter 2011-2014', 'State Qualifier 2011-2013', 'Good Sport Award, 2011-2012', 'Most Inspirational Boy, 2014' ] },
-							{ name: 'Track and Field', details: [ 'Captain, 2014', 'Varsity Letter, 2011-2014', 'State Qualifier, 2011-2014' ] },
-							{ name: 'Parent-Teacher-Student Association', details: [ 'Secretary, 2012-2014', 'Student Representative, 2011-2012' ] },
-							{ name: 'National Honor Society', details: [ 'Treasurer, 2013' ] },
-							{ name: 'Chess Club', details: [] },
-							{ name: 'Laughter Club', details: [] },
-						]
-					}
-				],
-				awards: [
-					{ name: 'Boothe Prize', description: 'The Boothe Prize is awarded to six students in each freshman class at Stanford University based upon essays written in the Thinking Matters and Program in Writing and Rhetoric classes. I won the Boothe Prize for winter quarter Thinking Matters classes for my essay entitled "On the Ethics of Negotiating Drug Prices through Medicare Part D." The class for which I wrote this essay, "Bioethical Challenges of New Technology," discussed ethical frameworks and applied them to emerging medical technologies and practices.', date: 'May 2015' },
-					{ name: 'National AP Scholar', description: 'This award was given on the basis of my AP scores that I received throughout high school.', date: 'August 2014' },
-					{ name: 'National Merit Scholar', description: 'This award was given on the basis of my PSAT score and subsequent application to advance from a National Merit Semifinalist to a National Merit Scholar.', date: 'May 2014' },
-					{ name: 'Presidential Scholar Semifinalist', description: 'This award was given on the basis of my SAT score and subsequent application to advance from a Presidential Scholar Candidate to a Presidential Scholar Semifinalist, one of three male Semifinalists in the state.', date: 'April 2014' },
-					{ name: 'American Invitational Mathematics Examination', description: 'I qualified to compete in the American Invitational Mathematics Examination in my sophomore, junior, and senior years of high school based on my performance in the American Mathematics Competition.', date: '2012, 2013, and 2014' },
-					{ name: 'American Mathematics Competition', description: 'There are three levels of the American Mathematics Competition (AMC): the AMC 8 for those in 8th grade and below, the AMC 10 for those in 10th grade and below, and the AMC 12 for those in 12th grade and below. I was the state champion in the AMC 8 in 8th grade, in the AMC 10 in 8th, 9th, and 10th grade, and in the AMC 12 in 12th grade.', date: '2010, 2011, 2012, and 2014' },
-					{ name: 'MathCounts Nationals', description: 'Based on my third place state performance in 8th grade I qualified to represent Alaska at the MathCounts National competition in Orlando, Florida. I placed fifth in 7th grade, which made me the alternate for Nationals that year.', date: '2008 and 2009' },
-					{ name: 'Bartlett Invitational Mathematics Competition', description: 'At the Barlett Invitational Mathematics Competition, hosted by the local school district, I placed 1st my sophomore year.', date: '2012'},
-				],
-				other: [
-					{ name: 'Research Science Institute', description: 'I was one of 50 domestic students selected to participate in the prestigious Research Science Institute (RSI). At RSI, a six-week summer camp for rising high school seniors hosted by the Masachusetts Institute for Technology, each student is matched with a mentor to scientific research. I was matched with a mentor at the Harvard Vision Lab where I performed research in the field of cognitive sciene. The work culminated in a scientific paper and a presentation at the RSI Symposium.', date: '2013' },
-					{ name: 'Anchorage Youth Symphony', description: 'I played french horn in the Anchorage Youth Symphony my freshman, sophomore, and junior years of high school. My favorite peices we performed were Dvo&#345;&#225;k&#39;s New World Symphony and Tchaikovsky&#39;s Fifth Symphony.', date: '2010-2014' },
-					{ name: 'Boy Scouts of America', description: 'As a Boy Scout I served as Senior Patrol Leader and Assistant Senior Patrol Leader for my troop in 2010. I earned the Eagle Scout badge in November 2011.', date: '2006-2013' },
-					{ name: 'National Youth Leadership Training', description: 'After completing the course as a learner in 2009, I served on the youth staff of National Youth Leadership Training (NYLT) as an Instructor (2010), Assistant Course Leader (2012), and Course Leader (2013). The camp is a week-long, youth-led summer conference to advance the leadership abilities of 48 learners. As Course Leader I prepared the 12-member youth staff with monthly meetings and presented several hour-long lectures to the fully assembled conference.', date: '2010, 2012, and 2013' },
-					{ name: 'Conference of Young Alaskans', description: 'I was selected as a delegate to the Conference of Young Alaskans, an event in which youth delegates from throughout the state discuss the issues relevant to the state and put forward suggestions as to how to address the issues.', date: '2012' },
-					// { name: 'Gifted Mentorship', description: 'TODO' },
-				]
-			}
+					].join(''),
+					data: [
+						{
+							name: 'Stanford University',
+							grad: '2018',
+							classes: [
+								{ name: 'CS 106A', title: 'Programming Methodology', time: 'Freshman Autumn' },
+								{ name: 'CS 106X', title: 'Programming Abstractions (Accelerated)', time: 'Freshman Winter' },
+								{ name: 'CS 107', title: 'Computer Organization and Systems', time: 'Freshman Spring' },
+								{ name: 'CS 42', title: 'Callback Me Maybe: Contemporary JavaScript', time: 'Freshman Spring' },
+								{ name: 'CS 103', title: 'Mathematical Foundations of Computing', time: 'Sophomore Autumn' },
+								{ name: 'MATH 51', title: 'Linear Algebra and Differential Calculus of Several Variables', time: 'Freshman Autumn' },
+								{ name: 'MATH 52', title: 'Integral Calculus of Several Variables', time: 'Freshman Winter' },
+								{ name: 'MATH 53', title: 'Ordinary Differential Equations with Linear Algebra', time: 'Freshman Spring' },
+								{ name: 'STATS 116', title: 'Theory of Probability', time: 'Sophomore Autumn' },
+								{ name: 'PHYSICS 41', title: 'Mechanics', time: 'Freshman Winter' },
+								{ name: 'THINK 11', title: 'Bioethical Challenges of New Technology', time: 'Freshman Winter' },
+								{ name: 'PWR 1CK', title: 'Investigation the News: Journalism, Technology, & the Future', time: 'Freshman Autumn' },
+								{ name: 'PWR 2AH', title: 'Ethnic Narratives and the Rhetoric of American Identity', time: 'Sophomore Autumn' },
+								{ name: 'FRENLANG 3', title: 'First-Year French, Third time', time: 'Freshman Spring' },
+								{ name: 'HISTORY 50A', title: 'Colonial and Revolutionary America', time: 'Freshman Spring' },
+								{ name: 'HISTORY 50C', title: 'The United States in the Twentieth Century', time: 'Sophomore Autumn' },
+							],
+							activities: [
+								{ name: 'Stanford Sports Analytics Club', details: [ 'Tech Officer, 2015-2016' ] },
+								{ name: 'Stanford Club Ultimate Frisbee', details: [] },
+								{ name: 'Stanford Democrats', details: [ 'Associate, 2015-2016' ] },
+								{ name: 'Stanford for Bernie', details: [ 'Events Team, 2015-2016' ] },
+								{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2016' ] },
+								{ name: 'Intramural Sports', details: [] }
+							]
+						},
+						{
+							name: 'West Anchorage High School',
+							grad: '2014',
+							note: 'Salutatorian',
+							classes: [
+								{ name: 'AP Chemistry', time: 'Junior' },
+								{ name: 'AP Biology', time: 'Senior' },
+								{ name: 'AP Physics B', time: 'Junior' },
+								{ name: 'AP Calculus AB', time: 'Sophomore' },
+								{ name: 'AP Calculus BC', time: 'Senior' },
+								{ name: 'AP Statistics', time: 'Junior' },
+								{ name: 'AP US History', time: 'Sophomore' },
+								{ name: 'AP Microeconomics', time: 'Junior' },
+								{ name: 'AP Macroeconomics', time: 'Senior' },
+								{ name: 'AP Government', time: 'Junior' },
+								{ name: 'AP Psychology', time: 'Senior' },
+								{ name: 'IB English', time: 'Junior' },
+								{ name: 'AP Literature', time: 'Senior' },
+							],
+							activities: [
+								{ name: 'Cross Country Running', details: [ 'Captain, 2011-2013', 'Varsity Letter 2010-2013', 'State Qualifier 2011-2012', 'Good Sport Award, 2011', 'Steve Prefontaine Award, 2011-2012' ] },
+								{ name: 'Cross Country Skiing', details: [ 'Captain, 2014', 'Varsity Letter 2011-2014', 'State Qualifier 2011-2013', 'Good Sport Award, 2011-2012', 'Most Inspirational Boy, 2014' ] },
+								{ name: 'Track and Field', details: [ 'Captain, 2014', 'Varsity Letter, 2011-2014', 'State Qualifier, 2011-2014' ] },
+								{ name: 'Parent-Teacher-Student Association', details: [ 'Secretary, 2012-2014', 'Student Representative, 2011-2012' ] },
+								{ name: 'National Honor Society', details: [ 'Treasurer, 2013' ] },
+								{ name: 'Chess Club', details: [] },
+								{ name: 'Laughter Club', details: [] },
+							]
+						}
+					]
+				},
+				{
+					name: 'awards',
+					icon: 'trophy',
+					template: [
+						'<div class="col-xs-12" id="awards">',
+							'{{#each this}}',
+								'<h3>{{ name }}</h3>',
+								'<h4>{{ date }}</h4>',
+								'<p>{{ description }}</p>',
+							'{{/each}}',
+						'</div>',
+					].join(''),
+					data: [
+						{ name: 'Boothe Prize', description: 'The Boothe Prize is awarded to six students in each freshman class at Stanford University based upon essays written in the Thinking Matters and Program in Writing and Rhetoric classes. I won the Boothe Prize for winter quarter Thinking Matters classes for my essay entitled "On the Ethics of Negotiating Drug Prices through Medicare Part D." The class for which I wrote this essay, "Bioethical Challenges of New Technology," discussed ethical frameworks and applied them to emerging medical technologies and practices.', date: 'May 2015' },
+						{ name: 'National AP Scholar', description: 'This award was given on the basis of my AP scores that I received throughout high school.', date: 'August 2014' },
+						{ name: 'National Merit Scholar', description: 'This award was given on the basis of my PSAT score and subsequent application to advance from a National Merit Semifinalist to a National Merit Scholar.', date: 'May 2014' },
+						{ name: 'Presidential Scholar Semifinalist', description: 'This award was given on the basis of my SAT score and subsequent application to advance from a Presidential Scholar Candidate to a Presidential Scholar Semifinalist, one of three male Semifinalists in the state.', date: 'April 2014' },
+						{ name: 'American Invitational Mathematics Examination', description: 'I qualified to compete in the American Invitational Mathematics Examination in my sophomore, junior, and senior years of high school based on my performance in the American Mathematics Competition.', date: '2012, 2013, and 2014' },
+						{ name: 'American Mathematics Competition', description: 'There are three levels of the American Mathematics Competition (AMC): the AMC 8 for those in 8th grade and below, the AMC 10 for those in 10th grade and below, and the AMC 12 for those in 12th grade and below. I was the state champion in the AMC 8 in 8th grade, in the AMC 10 in 8th, 9th, and 10th grade, and in the AMC 12 in 12th grade.', date: '2010, 2011, 2012, and 2014' },
+						{ name: 'MathCounts Nationals', description: 'Based on my third place state performance in 8th grade I qualified to represent Alaska at the MathCounts National competition in Orlando, Florida. I placed fifth in 7th grade, which made me the alternate for Nationals that year.', date: '2008 and 2009' },
+						{ name: 'Bartlett Invitational Mathematics Competition', description: 'At the Barlett Invitational Mathematics Competition, hosted by the local school district, I placed 1st my sophomore year.', date: '2012'},
+					]
+				},
+				{
+					name: 'other',
+					icon: 'laptop',
+					template: [
+						'<div class="col-xs-12" id="other">',
+							'{{#each this}}',
+								'<h3>{{ name }}</h3>',
+								'<h4>{{ date }}</h4>',
+								'<p>{{{ description }}}</p>',
+							'{{/each}}',
+						'</div>',
+					].join(''),
+					data: [
+						{ name: 'Research Science Institute', description: 'I was one of 50 domestic students selected to participate in the prestigious Research Science Institute (RSI). At RSI, a six-week summer camp for rising high school seniors hosted by the Masachusetts Institute for Technology, each student is matched with a mentor to scientific research. I was matched with a mentor at the Harvard Vision Lab where I performed research in the field of cognitive sciene. The work culminated in a scientific paper and a presentation at the RSI Symposium.', date: '2013' },
+						{ name: 'Anchorage Youth Symphony', description: 'I played french horn in the Anchorage Youth Symphony my freshman, sophomore, and junior years of high school. My favorite peices we performed were Dvo&#345;&#225;k&#39;s New World Symphony and Tchaikovsky&#39;s Fifth Symphony.', date: '2010-2014' },
+						{ name: 'Boy Scouts of America', description: 'As a Boy Scout I served as Senior Patrol Leader and Assistant Senior Patrol Leader for my troop in 2010. I earned the Eagle Scout badge in November 2011.', date: '2006-2013' },
+						{ name: 'National Youth Leadership Training', description: 'After completing the course as a learner in 2009, I served on the youth staff of National Youth Leadership Training (NYLT) as an Instructor (2010), Assistant Course Leader (2012), and Course Leader (2013). The camp is a week-long, youth-led summer conference to advance the leadership abilities of 48 learners. As Course Leader I prepared the 12-member youth staff with monthly meetings and presented several hour-long lectures to the fully assembled conference.', date: '2010, 2012, and 2013' },
+						{ name: 'Conference of Young Alaskans', description: 'I was selected as a delegate to the Conference of Young Alaskans, an event in which youth delegates from throughout the state discuss the issues relevant to the state and put forward suggestions as to how to address the issues.', date: '2012' },
+						// { name: 'Gifted Mentorship', description: 'TODO' },
+					]
+				}
+			]
 		},
 		projects: {
 			template: [
@@ -225,7 +229,7 @@
 						'{{#if link}}<a href="{{ link }}" target="_new"><i class="fa fa-link top-right"></i></a>{{/if}}',
 					'</div>',
 				'{{/each}}',
-			].join('\n'),
+			].join(''),
 			data    : [
 				{
 					name       : 'Graphicacy Major League Data Challenege',
@@ -289,7 +293,7 @@
 						'Hover or click on any of the skills on the left to see the ways in which I have utilized these skills!',
 					'</div>',
 				'</div>',
-			].join('\n'),
+			].join(''),
 			data    : [
 				{ tool: 'C++', id: 'cpp', classes: [ 'CS106X' ], projects: [ 'bat-eighth' ], jobs: [] },
 				{ tool: 'Java', id: 'java', classes: [ 'CS106A' ], projects: [], jobs: [] },
@@ -322,7 +326,7 @@
 						'</tbody>',
 					'</table>',
 				'</div>',
-			].join('\n'),
+			].join(''),
 			data    : [
 				{ name: "Email", link: "mailto:contact@elishayer.com", fa: "fa-envelope" },
 				{ name: "LinkedIn", link: "https://www.linkedin.com/in/eli-shayer-62476b9b", fa: "fa-linkedin" },
@@ -331,6 +335,20 @@
 			]
 		},
 	}
+
+	// append the about subtabs data to the about template and data
+	$.each(sections.about.subtabs, function() {
+		// push to the template in a Handlebars with wrapper
+		sections.about.template += '{{#with ' + this.name + '}}' + this.template + '{{/with}}';
+
+		// add the subtab data to the about data
+		sections.about.data[this.name] = this.data;
+
+		sections.about.data.subtabs.push({
+			name: this.name,
+			icon: this.icon
+		});
+	});
 
 	// helper to concatenate a list with proper syntax,
 	// with an optional mapping from the list contents to other strings
@@ -547,14 +565,14 @@
 
 	// set the active about subtab and show only the relevant content
 	function setActiveAboutSubtab(activeSubtab) {
-		$.each(sections.about.data.subtabs, function(index, subtab) {
-			var isActive = subtab.name === activeSubtab;
+		$.each(Object.keys(sections.about.data), function(index, name) {
+			var isActive = name === activeSubtab;
 
 			// set the active tab
-			$('#' + subtab.name + '-subtab').toggleClass('active', isActive);
+			$('#' + name + '-subtab').toggleClass('active', isActive);
 
 			// display only the active content
-			$('#' + subtab.name).toggle(isActive);
+			$('#' + name).toggle(isActive);
 		});
 	}
 
