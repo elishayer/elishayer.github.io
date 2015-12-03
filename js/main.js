@@ -574,37 +574,35 @@
 
 	// stop scrolling from occuring for empty links
 	$('a').click(function(event) {
-		if($(event.target).attr('href') === '#') {
+		if ($(event.target).attr('href') === '#') {
 			event.preventDefault();
 		}
 	});
 
-	// enable all activities tooltips and set the options
-	// an activities li only is a tooltip if there is at least one detail
-	$('.activities [data-toggle="tooltip"]').tooltip({
-		container: 'body',
-		placement: 'right',
-		html: true,
-		title: function() {
-			// split on | and re-join with a minified hr between details
-			return $(this).attr('details').split('|').join('<hr class="min">');
-		}
+	// activates all tooltips that are children of parent, sets title with titleFn
+	function activateTooltips(parent, titleFn) {
+		$(parent + ' [data-toggle="tooltip"]').tooltip({
+			container: 'body',
+			placement: 'right',
+			html: true,
+			title: titleFn
+		});
+	}
+
+	// activate activities tooltips, with details separated by minified hr tags
+	activateTooltips('.activities', function() {
+		return $(this).attr('details').split('|').join('<hr class="min">');
 	});
 
-	// enable all classes tooltips and set the options
-	$('.classes [data-toggle="tooltip"]').tooltip({
-		container: 'body',
-		placement: 'right',
-		html: true,
-		title: function() {
-			// cache jQuery object and get attributes
-			$this = $(this);
-			var title = $this.attr('c-title');
-			var time = $this.attr('c-time');
+	// activate classes tooltips, title and time separated by a minified hr tag
+	activateTooltips('.classes', function() {
+		// cache jQuery object and get attributes
+		var $this = $(this);
+		var title = $this.attr('c-title');
+		var time = $this.attr('c-time');
 
-			// include a line if both title and time are not empty
-			return title + (title.length && time.length ? '<hr class="min"/>' : '') + time;
-		}
+		// include a line if both title and time are not empty
+		return title + (title.length && time.length ? '<hr class="min"/>' : '') + time;
 	});
 
 })(window, document);
