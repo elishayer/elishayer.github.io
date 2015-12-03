@@ -72,7 +72,7 @@ i.bronze {
 	border-width: 1px;
 	border-color: #8c1515;
 	border-radius: 8px;
-	background-color: #f6f3e5
+	background-color: #f6f3e5;
 }
 
 #projects>div:hover, #skill-names>div:hover {
@@ -84,7 +84,18 @@ i.bronze {
 }
 
 /* ----- Styles for the about tab ----- */
-#school p.header {
+hr.tab-hr {
+	border-top-width: 5px;
+	margin-top: 0px;
+	margin-bottom: 17px;
+}
+
+hr.min {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#schools p.header {
 	font-weight: bold;
 }
 
@@ -105,11 +116,19 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 	min-height: 250px;
 	width: 30%;
 	margin: 1.66666% 5px 1.66666% 5px;
+	position: relative;
 }
 
 #projects>div>h3, #projects>div>a>h3 {
 	margin-top: 10px;
 	color: #27408b;
+}
+
+.top-right {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: inherit;
 }
 
 /* ----- Styles for the skills tab ----- */
@@ -145,4 +164,3 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 	padding-left: 20px;
 	padding-right: 20px;
 }
-e
