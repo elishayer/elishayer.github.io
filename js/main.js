@@ -325,7 +325,7 @@
 			].join(''),
 			data    : [
 				{ name: "Email", link: "mailto:contact@elishayer.com", fa: "fa-envelope" },
-				{ name: "LinkedIn", link: "https://www.linkedin.com/in/eli-shayer-62476b9b", fa: "fa-linkedin" },
+				{ name: "LinkedIn", link: "https://www.linkedin.com/in/elishayer", fa: "fa-linkedin" },
 				{ name: "GitHub", link: "https://github.com/elishayer", fa: "fa-github" },
 				{ name: "Twitter", link: "https://twitter.com/elishayer", fa: "fa-twitter" }
 			]
