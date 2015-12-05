@@ -78,7 +78,7 @@
 								'<h3>{{ name }}</h3>',
 								'<h4>Class of {{ grad }}{{#if note}} &ndash; {{note}}{{/if}}</h4>',
 								'<div class="row">',
-									'<div class="col-xs-12 col-sm-5 classes">',
+									'<div class="col-xs-6 col-sm-5 classes">',
 										'<p class="header">Classes</p>',
 										'<ul class="no-pad-ul">',
 											'{{#each classes}}',
@@ -86,13 +86,13 @@
 											'{{/each}}',
 										'</ul>',
 									'</div>',
-									'<div class="col-xs-12 col-sm-7 activities">',
+									'<div class="col-xs-6 col-sm-7 activities">',
 										'<p class="header">Activities</p>',
 										'<ul class="no-pad-ul">',
 											'{{#each activities}}',
 											'<li>',
 												'{{#if details.length}}',
-													'<a href="#" data-toggle="tooltip" details="{{ details }}">{{ name }} <i class="fa fa-caret-right"></i></a>',
+													'<a href="#" data-toggle="tooltip" details="{{ details }}"><i class="fa fa-caret-left"></i> {{ name }}</a>',
 												'{{else}}',
 													'{{ name }}',
 												'{{/if}}',
@@ -468,6 +468,10 @@
 			if (selection) {
 				currTabs[type] = selection;
 				setActive();
+				// if selecting the project tab, re-smooth in case of resizing previously occuring
+				if (type === 'tab' && selection === 'projects') {
+					smoothProjectTileHeight();
+				}
 			}
 		})
 	}
@@ -567,19 +571,19 @@
 
 	// ------------------------------------------ TOOLTIPS
 	// activates all tooltips that are children of parent, sets title with titleFn
-	function activateTooltips(parent, titleFn) {
+	function activateTooltips(parent, placement, titleFn) {
 		$(parent + ' [data-toggle="tooltip"]').tooltip({
-			container: 'body', placement: 'right', html: true, title: titleFn
+			container: 'body', placement: placement, html: true, title: titleFn
 		});
 	}
 
 	// activate activities tooltips, with details separated by minified hr tags
-	activateTooltips('.activities', function() {
+	activateTooltips('.activities', 'left', function() {
 		return $(this).attr('details').split('|').join('<hr class="min">');
 	});
 
 	// activate classes tooltips, title and time separated by a minified hr tag
-	activateTooltips('.classes', function() {
+	activateTooltips('.classes', 'right', function() {
 		// cache jQuery object and get attributes
 		var $this = $(this);
 		var title = $this.attr('c-title');

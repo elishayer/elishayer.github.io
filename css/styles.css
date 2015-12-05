@@ -40,7 +40,7 @@ body {
 		padding-right: 100px;
 	}
 }
-.
+
 
 /* Small padding on top and bottom of each row */
 .row {
@@ -48,7 +48,7 @@ body {
 	padding-bottom: 10px;
 }
 
-/* ----- portrait styles ----- */
+/* ----- intro styles ----- */
 img#portrait {
 	width: 100%;
 	border-radius: 50%;
@@ -152,8 +152,11 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 	padding-top: 0px;
 }
 
-#skills-details>div {
-	font-size: 1.5em;
+/* increase font size of the details for medium screen size and above */
+@media (min-width: 992px) {
+	#skills-details>div {
+		font-size: 1.5em;
+	}
 }
 
 /* ----- Styles for the social links ----- */
