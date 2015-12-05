@@ -24,17 +24,23 @@ body {
 
 /* ensure the container takes up the whole screen vertically
  * small padding to the top and bottom (20px),
- * 100px padding on the left and right
  * Sandstone 50% background
  */
 .container {
 	min-height: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	padding-left: 100px;
-	padding-right: 100px;
 	background-color: #eee6cb;
 }
+
+/* container side padding according for medium and above */
+@media (min-width: 992px) {
+	.container {
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+}
+.
 
 /* Small padding on top and bottom of each row */
 .row {
