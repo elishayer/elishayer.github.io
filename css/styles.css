@@ -24,7 +24,7 @@ body {
 
 /* ensure the container takes up the whole screen vertically
  * small padding to the top and bottom,
- * 10% margin on the left and right
+ * 30px margin on the left and right
  * Sandstone 50% background
  */
 .container {
@@ -66,8 +66,14 @@ i.bronze {
 	color: #cd7f32;
 }
 
-/* ----- Styles shared between tab sections ----- */
-#projects>div, #skill-names>div {
+/* ----- Shared .tile-wrapper class ----- */
+.tile-wrapper {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.tile-wrapper>div {
+	padding: 5px 5% 5px 5%;
 	border-style: solid;
 	border-width: 1px;
 	border-color: #8c1515;
@@ -75,11 +81,11 @@ i.bronze {
 	background-color: #f6f3e5;
 }
 
-#projects>div:hover, #skill-names>div:hover {
+.tile-wrapper>div:hover {
 	background-color: #ddcf99;
 }
 
-#projects>div.active, #skill-names>div.active {
+.tile-wrapper.active>div {
 	background-color: #cccccc;
 }
 
@@ -112,14 +118,11 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 }
 
 /* ----- Styles for the projects tab ----- */
-#projects>div {
-	min-height: 250px;
-	width: 30%;
-	margin: 1.66666% 5px 1.66666% 5px;
+#projects>.tile-wrapper>div {
 	position: relative;
 }
 
-#projects>div>h3, #projects>div>a>h3 {
+#projects>.tile-wrapper>div>h3, #projects>.tile-wrapper>div>a>h3 {
 	margin-top: 10px;
 	color: #27408b;
 }
@@ -132,12 +135,8 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 }
 
 /* ----- Styles for the skills tab ----- */
-#skill-names>div {
+#skill-names>.tile-wrapper {
 	height: 40px;
-	width: 40%;
-	margin: 5px 5% 5px 5%;
-	padding-top: 10px;
-	padding-bottom: 10px;
 	text-align: center;
 	vertical-align: center;
 	cursor: pointer;

@@ -216,13 +216,15 @@
 		projects: {
 			template: [
 				'{{#each this}}',
-					'<div class="col-xs-4">',
-						'{{#if link}}<a href="{{ link }}" target="_new">{{/if}}',
-							'<h3>{{ name }}{{#if awardClass}} <i class="fa fa-trophy {{ awardClass }}"></i>{{/if}}</h3>',
-						'{{#if link}}</a>{{/if}}',
-						'{{#if tools}}<p>{{{ tools }}}</p>{{/if}}',
-						'<p>{{{ description }}}</p>',
-						'{{#if link}}<a href="{{ link }}" target="_new"><i class="fa fa-link top-right"></i></a>{{/if}}',
+					'<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 tile-wrapper">',
+						'<div>',
+							'{{#if link}}<a href="{{ link }}" target="_new">{{/if}}',
+								'<h3>{{ name }}{{#if awardClass}} <i class="fa fa-trophy {{ awardClass }}"></i>{{/if}}</h3>',
+							'{{#if link}}</a>{{/if}}',
+							'{{#if tools}}<p>{{{ tools }}}</p>{{/if}}',
+							'<p>{{{ description }}}</p>',
+							'{{#if link}}<a href="{{ link }}" target="_new"><i class="fa fa-link top-right"></i></a>{{/if}}',
+						'</div>',
 					'</div>',
 				'{{/each}}',
 			].join(''),
@@ -275,8 +277,8 @@
 				'<div class="col-xs-6">',
 					'<div class="row" id="skill-names">',
 						'{{#each this}}',
-						'<div class="col-xs-6" id="{{ id }}">',
-							'{{ tool }}',
+						'<div class="col-xs-12 col-sm-6 tile-wrapper" id="{{ id }}">',
+							'<div>{{ tool }}</div>',
 						'</div>',
 						'{{/each}}',
 					'</div>',
@@ -445,11 +447,11 @@
 	// general function to set tab listeners for any set of tabs
 	function setTabListener(tabs, getName, type, selector, initial) {
 		// toggle a single tab to active and all others to hidden
-		function setActive(activeName) {
+		function setActive() {
 			$.each(tabs, function() {
 				// get the name and determine whether it is active
 				var name = getName(this);
-				var isActive = name === activeName;
+				var isActive = name === currTabs[type];
 
 				// set the active tab and display only the active content
 				$('#' + name + '-' + type).toggleClass('active', isActive);
@@ -464,36 +466,42 @@
 		$(selector).click(function() {
 			var selection = $(this).attr(type);
 			if (selection) {
-				setActive(selection);
+				currTabs[type] = selection;
+				setActive();
 			}
 		})
 	}
 
+	// keep track of the current tabs
+	var currTabs = {
+		tab: 'projects',
+		subtab: 'schools'
+	}
+
 	// set the tab listener for the main set of tabs
 	setTabListener(sections.tabs.data, function(tab) { return tab.name; },
-		'tab', '#tabs>div>ul>li>a', 'about');
+		'tab', '#tabs>div>ul>li>a', currTabs['tab']);
 
 	// set the tab listener for the subtabs in the about tab
 	setTabListener(Object.keys(sections.about.data), function(tab) { return tab.toString(); },
-		'subtab', '#about>div>ul>li>a', 'schools');	
+		'subtab', '#about>div>ul>li>a', currTabs['subtab']);	
 
 	// ------------------------------------------ ACTIVE SKILL SELECTION
 	// set the active skills content area and skill name
 	function setActiveSkillDetail(activeDetail, isClick) {
-		// keep track of whether any skill is set as active
-		var skillIsActive = false;
+		// keep track of whether any skill is to be displayed
+		var skillIsDisplayed = false;
 		$.each(sections.skills.data, function() {
-			var isActive = this.id === activeDetail;
+			var isDisplayed = this.id === activeDetail;
+			// true if any skill has been set as displayed
+			skillIsDisplayed = skillIsDisplayed || isDisplayed;
 
-			// true if any skill has been set as active
-			skillIsActive = skillIsActive || isActive;
-
-			// display only the active detail
-			$('#' + this.id + '-details').toggle(isActive);
+			// display only the displayed detail
+			$('#' + this.id + '-details').toggle(isDisplayed);
 		});
 
 		// set the instructions to visible if no details selected
-		$('#skill-details-intro').toggle(!skillIsActive);
+		$('#skill-details-intro').toggle(!skillIsDisplayed);
 
 		// if a click or a clear, set the active skill name
 		if (isClick || !activeDetail) {
@@ -531,14 +539,14 @@
 	var activeSkillName = null;
 
 	// event listener for the skill details
-	$('#skill-names>div').on({
+	$('#skill-names>.tile-wrapper>div').on({
 		click: function() {
 			skillClick = true;
-			setActiveSkillDetail($(this).attr('id'), skillClick);
+			setActiveSkillDetail($(this).parent().attr('id'), skillClick);
 		},
 		mouseenter: function() {
 			skillClick = false;
-			setActiveSkillDetail($(this).attr('id'), skillClick);
+			setActiveSkillDetail($(this).parent().attr('id'), skillClick);
 		},
 		mouseleave: function() {
 			if (activeSkillName) {
@@ -552,7 +560,7 @@
 	// any click on the window that is not on a skill name clears the
 	// active skill name selection, if there is such a name
 	$(window).click(function(event) {
-		if (activeSkillName && !$(event.target).is($('#skill-names>div'))) {
+		if (activeSkillName && !$(event.target).is($('#skill-names>.tile-wrapper>div'))) {
 			setActiveSkillDetail();
 		}
 	});
@@ -581,11 +589,101 @@
 		return title + (title.length && time.length ? '<hr class="min"/>' : '') + time;
 	});
 
-	// ------------------------------------------ GENERAL LISTENER
+	// ------------------------------------------ GENERAL LISTENERS
 	// stop scrolling from occuring for empty links
 	$('a').click(function(event) {
 		if ($(this).attr('href') === '#') {
 			event.preventDefault();
 		}
 	});
+
+	// resize listener, consistent project tile heights
+	$(window).resize(function() {
+		// clear the height styles
+		styleContents({}, 'project-style', 'd');
+
+		// then make the project tile heights uniform
+		smoothProjectTileHeight();
+	});
+
+	// make it so the heights of project tiles in each row have matching heights
+	function smoothProjectTileHeight() {
+		// define selector and cache jQuery object for the tiles
+		var selector = '#projects>.tile-wrapper';
+		var $tiles = $(selector);
+
+		if (currTabs.tab === 'projects') {
+			// keep track of the maximum height
+			var maxHeight = 0;
+
+			// for each tile
+			for (var i = 0; i < $tiles.length; i++) {
+				// update the maxHeight with the height of the current tile
+				maxHeight = Math.max(maxHeight, $($tiles[i]).height());
+			}
+			// set the height
+			styleContents({
+				selector: selector,
+				contents: {
+					height: maxHeight + 'px'
+				}
+			}, 'project-style');
+		}
+
+	}
+
+	// initialize the style elements, then set them equal to start
+	$('<style>').attr('id', 'project-style').appendTo($('head'));
+	$('<style>').text(styleContents({
+		selector: '#projects>.tile-wrapper>div',
+		contents: {
+			height: '100%'
+		}
+	})).appendTo($('head'));
+	smoothProjectTileHeight();
+
+	// helper function to initialize or clear the html style element, then to
+	// overwritethe  style tag contents, for one object or array of objects
+	// puts the styles in the general style tag if no flag
+	// flags: 'i' -> initialize the style tag
+	//        'e' -> empty the contents of the style tag.
+	function styleContents(styles, styleId, flag) {
+		// the style tag id and a selector for tiles
+		var selector = '#projects>.tile-wrapper';
+
+		// empty
+		if (flag === 'e') {
+			$('#' + styleId).text('');
+
+		// overwrite
+		} else {
+			// if not an array, make it a singleton array for future consistency
+			if (Object.prototype.toString.call(styles) !== '[object Array]') {
+				styles = [styles];
+			}
+
+			// initialize empty string
+			var result = '';
+
+			// for each entry in styles
+			for (var i = 0; i < styles.length; i++) {
+				// keeps track of whether the first key for proper comma syntax
+				var isFirstKey = true;
+
+				// add each key val pair to the style tag
+				result += styles[i].selector + '{';
+				for (key in styles[i].contents) {
+					result += (isFirstKey ? '' : ',') + key + ':' + styles[i].contents[key];
+					isFirstKey = isFirstKey && false;
+				}
+
+				result += '}';
+			}
+			if (styleId) {
+				$('#' + styleId).text(result);
+			}
+			return result;
+		}
+	}
+
 })(window, document);
