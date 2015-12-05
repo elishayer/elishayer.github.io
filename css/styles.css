@@ -23,16 +23,16 @@ body {
 }
 
 /* ensure the container takes up the whole screen vertically
- * small padding to the top and bottom,
- * 30px margin on the left and right
+ * small padding to the top and bottom (20px),
+ * 100px padding on the left and right
  * Sandstone 50% background
  */
 .container {
 	min-height: 100%;
 	padding-top: 20px;
 	padding-bottom: 20px;
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 100px;
+	padding-right: 100px;
 	background-color: #eee6cb;
 }
 
@@ -160,6 +160,6 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 
 /* add padding between cells */
 #social-links>div>table>tbody>tr>td {
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
