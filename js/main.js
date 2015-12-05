@@ -600,7 +600,7 @@
 	// resize listener, consistent project tile heights
 	$(window).resize(function() {
 		// clear the height styles
-		styleContents({}, 'project-style', 'd');
+		styleContents({}, 'project-style');
 
 		// then make the project tile heights uniform
 		smoothProjectTileHeight();
@@ -642,48 +642,38 @@
 	})).appendTo($('head'));
 	smoothProjectTileHeight();
 
-	// helper function to initialize or clear the html style element, then to
-	// overwritethe  style tag contents, for one object or array of objects
-	// puts the styles in the general style tag if no flag
-	// flags: 'i' -> initialize the style tag
-	//        'e' -> empty the contents of the style tag.
-	function styleContents(styles, styleId, flag) {
+	// helper function to write the style tag contents, for one object or array of objects
+	// if an id is given, overwrites the contents in that style element
+	function styleContents(styles, styleId) {
 		// the style tag id and a selector for tiles
 		var selector = '#projects>.tile-wrapper';
 
-		// empty
-		if (flag === 'e') {
-			$('#' + styleId).text('');
-
-		// overwrite
-		} else {
-			// if not an array, make it a singleton array for future consistency
-			if (Object.prototype.toString.call(styles) !== '[object Array]') {
-				styles = [styles];
-			}
-
-			// initialize empty string
-			var result = '';
-
-			// for each entry in styles
-			for (var i = 0; i < styles.length; i++) {
-				// keeps track of whether the first key for proper comma syntax
-				var isFirstKey = true;
-
-				// add each key val pair to the style tag
-				result += styles[i].selector + '{';
-				for (key in styles[i].contents) {
-					result += (isFirstKey ? '' : ',') + key + ':' + styles[i].contents[key];
-					isFirstKey = isFirstKey && false;
-				}
-
-				result += '}';
-			}
-			if (styleId) {
-				$('#' + styleId).text(result);
-			}
-			return result;
+		// if not an array, make it a singleton array for future consistency
+		if (Object.prototype.toString.call(styles) !== '[object Array]') {
+			styles = [styles];
 		}
+
+		// initialize empty string
+		var result = '';
+
+		// for each entry in styles
+		for (var i = 0; i < styles.length; i++) {
+			// keeps track of whether the first key for proper comma syntax
+			var isFirstKey = true;
+
+			// add each key val pair to the style tag
+			result += styles[i].selector + '{';
+			for (key in styles[i].contents) {
+				result += (isFirstKey ? '' : ',') + key + ':' + styles[i].contents[key];
+				isFirstKey = isFirstKey && false;
+			}
+
+			result += '}';
+		}
+		if (styleId) {
+			$('#' + styleId).text(result);
+		}
+		return result;
 	}
 
 })(window, document);
