@@ -10,7 +10,7 @@
 	sections = {
 		intro:  {
 			template: [
-				'<div class="col-sm-4 col-xs-12">',
+				'<div class="col-sm-4 col-xs-4 col-sm-offset-0 col-xs-offset-4">',
 					'<img src="{{ image.src }}" alt="{{ image.alt }}" id="{{ image.id }}"/>',
 				'</div>',
 				'<div class="col-sm-8 col-xs-12">',
@@ -224,7 +224,7 @@
 							'{{#if tools}}<p>{{{ tools }}}</p>{{/if}}',
 							'<p>{{{ description }}}</p>',
 							'{{#if link}}<a href="{{ link }}" target="_new"><i class="fa fa-link top-right"></i></a>{{/if}}',
-							'{{#if awardClass}}<i class="fa fa-trophy {{ awardClass }} top-left"></i>{{/if}}',
+							'{{#if award}}<i class="fa fa-trophy {{ award }} top-left"></i>{{/if}}',
 						'</div>',
 					'</div>',
 				'{{/each}}',
@@ -233,7 +233,7 @@
 				{
 					name       : 'Graphicacy Major League Data Challenege',
 					id         : 'graphicacy',
-					awardClass : 'silver',
+					award      : 'silver',
 					link       : 'http://cardinalanalytics.github.io/mlb-challenge/',
 					tools      : [ 'd3.js', 'Bootstrap', 'jQuery' ],
 					description: 'A group project visualization of baseball careers for which I wrote all the code. The submission won 2nd place, as announced <a href="http://www.majorleaguedatachallenge.com/award-winners-announcement" target="_new">here</a>.'
