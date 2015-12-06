@@ -601,37 +601,58 @@
 		}
 	});
 
-	// resize listener, consistent project tile heights
+	// resize listener, make project tile heights consistent
 	$(window).resize(function() {
-		// clear the height styles
-		styleContents({}, 'project-style');
-
-		// then make the project tile heights uniform
 		smoothProjectTileHeight();
 	});
 
 	// make it so the heights of project tiles in each row have matching heights
 	function smoothProjectTileHeight() {
+		// clear the height styles
+		styleContents({}, 'project-style');
+
+		// remove .project-tile-group-# classes (up to 4 groups)
+		for (var i = 0; i < 4; i++) {
+			var className = 'project-tile-group-' + i;
+			$('.' + className).removeClass(className);
+		}
+
 		// define selector and cache jQuery object for the tiles
 		var selector = '#projects>.tile-wrapper';
 		var $tiles = $(selector);
 
+		// only if the projects tab is visible
 		if (currTabs.tab === 'projects') {
-			// keep track of the maximum height
-			var maxHeight = 0;
+			// get the number of tiles per column, given 30 pixels of padding per tile
+			var tilesPerCol = Math.round($('#projects').width() / ($(selector).width() + 30));
 
-			// for each tile
-			for (var i = 0; i < $tiles.length; i++) {
-				// update the maxHeight with the height of the current tile
-				maxHeight = Math.max(maxHeight, $($tiles[i]).height());
-			}
-			// set the height
-			styleContents({
-				selector: selector,
-				contents: {
-					height: maxHeight + 'px'
+			// for each tile group (defined by the number of tiles per column)
+			for (var g = 0; g * tilesPerCol < $tiles.length; g++) {
+				var className = 'project-tile-group-' + g;
+
+				// keep track of the maximum group height
+				var maxHeight = 0;
+
+				// for each tile in the group
+				for (var i = 0; i < tilesPerCol && g * tilesPerCol + i < $tiles.length; i++) {
+					$tile = $($tiles[g * tilesPerCol + i]);
+					// update the maxHeight with the height of the current tile
+					maxHeight = Math.max(maxHeight, $tile.height());
+
+					// set the group class of the tile
+					$tile.addClass(className);
 				}
-			}, 'project-style');
+
+				// set the height
+				styleContents({
+					selector: '.' + className,
+					contents: {
+						height: maxHeight + 'px'
+					}
+				}, 'project-style');
+				
+			}
+
 		}
 
 	}
@@ -648,9 +669,13 @@
 
 	// helper function to write the style tag contents, for one object or array of objects
 	// if an id is given, overwrites the contents in that style element
-	function styleContents(styles, styleId) {
-		// the style tag id and a selector for tiles
-		var selector = '#projects>.tile-wrapper';
+	// if an empty object is passed, the contents of the style element is emptied
+	function styleContents(styles, styleId, flag) {
+		// if an empty object, clear the style element and return
+		if (!Object.keys(styles).length) {
+			$('#' + styleId).text('');
+			return;
+		}
 
 		// if not an array, make it a singleton array for future consistency
 		if (Object.prototype.toString.call(styles) !== '[object Array]') {
@@ -675,7 +700,8 @@
 			result += '}';
 		}
 		if (styleId) {
-			$('#' + styleId).text(result);
+			var $styleElem = $('#' + styleId);
+			$styleElem.text($styleElem.text() + result);
 		}
 		return result;
 	}
