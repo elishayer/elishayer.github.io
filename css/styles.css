@@ -135,8 +135,15 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 
 .top-right {
 	position: absolute;
-	right: 10px;
-	top: 10px;
+	right: 5px;
+	top: 5px;
+	color: inherit;
+}
+
+.top-left {
+	position: absolute;
+	left: 5px;
+	top: 5px;
 	color: inherit;
 }
 
