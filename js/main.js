@@ -10,7 +10,7 @@
 	sections = {
 		intro:  {
 			template: [
-				'<div class="col-sm-4 col-xs-4 col-sm-offset-0 col-xs-offset-4">',
+				'<div class="col-sm-4 col-xs-6 col-sm-offset-0 col-xs-offset-3">',
 					'<img src="{{ image.src }}" alt="{{ image.alt }}" id="{{ image.id }}"/>',
 				'</div>',
 				'<div class="col-sm-8 col-xs-12">',
