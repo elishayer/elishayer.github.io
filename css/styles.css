@@ -96,6 +96,10 @@ i.bronze {
 }
 
 /* ----- Styles for the about tab ----- */
+.about-overview {
+	text-align: center;
+}
+
 hr.tab-hr {
 	border-top-width: 5px;
 	margin-top: 0px;

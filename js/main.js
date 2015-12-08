@@ -27,7 +27,7 @@
 					title   : 'Eli Shayer',
 					subtitle: 'Stanford University class of 2018',
 					text    : [
-						'Hi! I am a sophomore at Stanford University from Anchorage, Alaska studying computer science and statistics. I am declared in Mathematical and Computational Science for my major, and am additionaly pursuing a minor in history.',
+						'Hi! I am a sophomore at Stanford University from Anchorage, Alaska studying computer science and statistics. I am declared in Mathematical and Computational Science for my major, and am additionally pursuing a minor in history.',
 						'I am particularly interested in web development and sports analytics. You can learn more about me, projects I have worked on, and skills I possess in the tabs below.',
 						'Please feel free to <a href="mailto:contact@elishayer.com" target="_new">email me</a>.'
 					]
@@ -54,7 +54,10 @@
 		},
 		about: {
 			// data and template to be appended with the data from subtabs
-			data: { subtabs: [] },
+			data: {
+				overview: 'Please see the tabs to learn more about me.',
+				subtabs: []
+			},
 			template: [
 				'<hr class="tab-hr"/>',
 				'<div class="col-xs-12">',
@@ -163,6 +166,7 @@
 								{ name: 'National Honor Society', details: [ 'Treasurer, 2013' ] },
 								{ name: 'Chess Club', details: [] },
 								{ name: 'Laughter Club', details: [] },
+								{ name: 'Amnesty International', details: [] },
 							]
 						}
 					]
@@ -289,7 +293,7 @@
 					'<div id="{{ id }}-details">{{skillsDetail this}}</div>',
 					'{{/each}}',
 					'<div id="skill-details-intro">',
-						'Hover or click on any of the skills on the left to see the ways in which I have utilized these skills!',
+						'Hover over or click on any of the skills on the left to see the ways in which I have utilized these skills!',
 					'</div>',
 				'</div>',
 			].join(''),
@@ -479,7 +483,7 @@
 
 	// keep track of the current tabs
 	var currTabs = {
-		tab: 'projects',
+		tab: 'about',
 		subtab: 'schools'
 	}
 
@@ -651,11 +655,8 @@
 						height: maxHeight + 'px'
 					}
 				}, 'project-style');
-				
 			}
-
 		}
-
 	}
 
 	// initialize the style elements, then set them equal to start
