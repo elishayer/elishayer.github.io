@@ -55,11 +55,12 @@
 		about: {
 			// data and template to be appended with the data from subtabs
 			data: {
-				overview: 'Please see the tabs to learn more about me.',
+				overview: 'Please see the tabs below to learn more about me.',
 				subtabs: []
 			},
 			template: [
 				'<hr class="tab-hr"/>',
+				'<p class="about-overview">{{ overview }}</p>',
 				'<div class="col-xs-12">',
 					'<ul class="nav nav-tabs nav-justified">',
 						'{{#each subtabs}}',
@@ -136,7 +137,7 @@
 								{ name: 'Stanford Democrats', details: [ 'Associate, 2015-2016' ] },
 								{ name: 'Stanford for Bernie', details: [ 'Events Team, 2015-2016' ] },
 								{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2016' ] },
-								{ name: 'Intramural Sports', details: [] }
+								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring' ] }
 							]
 						},
 						{
@@ -166,7 +167,7 @@
 								{ name: 'National Honor Society', details: [ 'Treasurer, 2013' ] },
 								{ name: 'Chess Club', details: [] },
 								{ name: 'Laughter Club', details: [] },
-								{ name: 'Amnesty International', details: [] },
+								{ name: 'Amnesty International', details: [ 'Treasurer, 2014' ] },
 							]
 						}
 					]
@@ -282,7 +283,7 @@
 				'<div class="col-xs-6">',
 					'<div class="row" id="skill-names">',
 						'{{#each this}}',
-						'<div class="col-xs-12 col-sm-6 tile-wrapper" id="{{ id }}">',
+						'<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 tile-wrapper" id="{{ id }}">',
 							'<div>{{ tool }}</div>',
 						'</div>',
 						'{{/each}}',
