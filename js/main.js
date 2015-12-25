@@ -303,6 +303,7 @@
 				{ tool: 'Java', id: 'java', classes: [ 'CS106A' ], projects: [], jobs: [] },
 				{ tool: 'C', id: 'c', classes: [ 'CS107' ], projects: [], jobs: [] },
 				{ tool: 'JavaScript', id: 'js', classes: [ 'CS42' ], projects: [ 'graphicacy', 'ssac-web', 'pitch-tracker' ], jobs: [] },
+				{ tool: 'jQuery', id: 'jquery', classes: [ 'CS42' ], projects: [ 'graphicacy', 'ssac-web' ], jobs: [] },
 				{ tool: 'Node.js', id: 'node', classes: [ 'CS42' ], projects: [ 'pitch-tracker' ], jobs: [] },
 				{ tool: 'Express', id: 'express', classes: [ 'CS42' ], projects: [ 'pitch-tracker' ], jobs: [] },
 				{ tool: 'AngularJS', id: 'angular', classes: [], projects: [ 'pitch-tracker' ], jobs: [] },
