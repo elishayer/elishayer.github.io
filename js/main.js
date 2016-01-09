@@ -181,11 +181,12 @@
 								'<h3>{{ name }}</h3>',
 								'<h4>{{ date }}</h4>',
 								'<p>{{ description }}</p>',
+								'{{#if download}}<a href="./documents/{{ download }}">Download {{ download }}</a>{{/if}}',
 							'{{/each}}',
 						'</div>',
 					].join(''),
 					data: [
-						{ name: 'Boothe Prize', description: 'The Boothe Prize is awarded to six students in each freshman class at Stanford University based upon essays written in the Thinking Matters and Program in Writing and Rhetoric classes. I won the Boothe Prize for winter quarter Thinking Matters classes for my essay entitled "On the Ethics of Negotiating Drug Prices through Medicare Part D." The class for which I wrote this essay, "Bioethical Challenges of New Technology," discussed ethical frameworks and applied them to emerging medical technologies and practices.', date: 'May 2015' },
+						{ name: 'Boothe Prize', description: 'The Boothe Prize is awarded to six students in each freshman class at Stanford University based upon essays written in the Thinking Matters and Program in Writing and Rhetoric classes. I won the Boothe Prize for winter quarter Thinking Matters classes for my essay entitled "On the Ethics of Negotiating Drug Prices through Medicare Part D." The class for which I wrote this essay, "Bioethical Challenges of New Technology," discussed ethical frameworks and applied them to emerging medical technologies and practices.', date: 'May 2015', download: 'EliShayer.BoothePrize.pdf' },
 						{ name: 'National AP Scholar', description: 'This award was given on the basis of my AP scores that I received throughout high school.', date: 'August 2014' },
 						{ name: 'National Merit Scholar', description: 'This award was given on the basis of my PSAT score and subsequent application to advance from a National Merit Semifinalist to a National Merit Scholar.', date: 'May 2014' },
 						{ name: 'Presidential Scholar Semifinalist', description: 'This award was given on the basis of my SAT score and subsequent application to advance from a Presidential Scholar Candidate to a Presidential Scholar Semifinalist, one of three male Semifinalists in the state.', date: 'April 2014' },
@@ -344,12 +345,11 @@
 	// ------------------------------------------ DATA AND TEMPLATE ADJUSTMENTS
 	// append the about subtabs data to the about template and data
 	$.each(sections.about.subtabs, function() {
-		// push to the template in a Handlebars with wrapper
+		// concatenate sub-tab templates to the about tab template in Handlebars #with wrappers
 		sections.about.template += '{{#with ' + this.name + '}}' + this.template + '{{/with}}';
 
-		// add the subtab data to the about data
+		// add the subtab data to the about data and the name/icon to the subtabs data
 		sections.about.data[this.name] = this.data;
-
 		sections.about.data.subtabs.push({
 			name: this.name,
 			icon: this.icon
@@ -538,6 +538,9 @@
 				activeSkillName = null;
 			}
 		}
+
+		// set the details height
+		setSkillDetailsLocation();
 	}
 
 	// initialize to no selected skill
@@ -575,6 +578,45 @@
 			setActiveSkillDetail();
 		}
 	});
+
+	// set the .skill-details location based on the scroll location
+	$(window).scroll(function() {
+		if (currTabs.tab === "skills") {
+			setSkillDetailsLocation();
+		}
+	});
+
+	// set the skills details such that it is visible at all times
+	function setSkillDetailsLocation() {
+		// cache jQuery objects: the skills div and the active details div
+		var $skills = $('#skills');
+		var $detailWrapper = $skills.children('#skills-details');
+		var $detail = $detailWrapper.children('div:visible');
+
+		var buffer = 10;
+
+		// if the skills div is above the visible window
+		if ($(window).scrollTop() > $skills.offset().top) {
+			// if the active detail bottom is above the skills wrapper bottom 
+			if ($detail.offset().top + $detail.height() + buffer <= $skills.offset().top + $skills.height()) {
+				$detailWrapper.css({
+					position: 'absolute',
+					top: buffer,
+					left: 0
+				});
+			} else {
+				$detailWrapper.css({
+					position: 'fixed',
+					top: buffer
+				});
+			}
+		} else {
+			$detailWrapper.css({
+				position: 'relative',
+				top: ''
+			});
+		}
+	}
 
 	// ------------------------------------------ TOOLTIPS
 	// activates all tooltips that are children of parent, sets title with titleFn
