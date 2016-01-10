@@ -21,7 +21,7 @@
 					'{{/each}}',
 					'<ul id="intro-buttons">',
 						'{{#each content.buttons}}',
-						'<li><a class="btn btn-{{ btn }}" href="{{ href }}">{{ text }} <i class="fa fa-{{ icon }}"></i></a></li>',
+						'<li><a class="btn btn-{{ btn }}" href="{{ href }}" target="_new">{{ text }} <i class="fa fa-{{ icon }}"></i></a></li>',
 						'{{/each}}',
 					'</ul>',
 				'</div>',
@@ -454,8 +454,10 @@
 		var data = sections[section].data;
 
 		// compile the template, pass in the data, and render to the DOM
-		var html = Handlebars.compile(template)(data);
-		$('#' + section).html(html);
+		$('<div>').addClass('row')
+				  .attr('id', section)
+				  .html(Handlebars.compile(template)(data))
+				  .appendTo($('.container'));
 	}
 
 	// ------------------------------------------ TAB LISTENERS
