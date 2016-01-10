@@ -139,6 +139,10 @@ hr.min {
 	padding-left: 0px;
 }
 
+.spacer {
+	visibility: hidden;
+}
+
 a[data-toggle="popover"], a[data-toggle="tooltip"] {
 	color: inherit;
 }

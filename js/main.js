@@ -106,7 +106,7 @@
 												'{{#if details.length}}',
 													'<a href="#" data-toggle="tooltip" details="{{ details }}"><i class="fa fa-caret-left"></i> {{ name }}</a>',
 												'{{else}}',
-													'{{ name }}',
+													'<i class="fa fa-caret-left spacer"></i> {{ name }}',
 												'{{/if}}',
 											'</li>',
 											'{{/each}}',
@@ -206,7 +206,7 @@
 				},
 				{
 					name: 'other',
-					icon: 'laptop',
+					icon: 'bar-chart',
 					template: [
 						'<div class="col-xs-12" id="other">',
 							'{{#each this}}',
