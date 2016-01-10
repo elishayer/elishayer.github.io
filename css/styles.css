@@ -57,13 +57,17 @@ img#portrait {
 #intro-buttons {
 	width: 100%;
 	display: table;
-	table-layout: fixed;
+	padding: 0px;
 }
 
 #intro-buttons>li {
-	display: table-cell;
+	display: table-row;
 	text-align: center;
-	border-width: 0px;
+	margin: 5px;
+}
+
+#intro-buttons>li>a {
+	margin: 5px;
 }
 
 /* ----- Styles for the tabs ----- */
