@@ -54,6 +54,18 @@ img#portrait {
 	border-radius: 50%;
 }
 
+#intro-buttons {
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+}
+
+#intro-buttons>li {
+	display: table-cell;
+	text-align: center;
+	border-width: 0px;
+}
+
 /* ----- Styles for the tabs ----- */
 .nav>li>a {
 	text-transform: capitalize;
@@ -168,6 +180,10 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 	#skills-details>div {
 		font-size: 1.5em;
 	}
+}
+
+#skills {
+	position: relative;
 }
 
 /* ----- Styles for the social links ----- */

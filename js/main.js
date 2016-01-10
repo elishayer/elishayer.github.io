@@ -17,8 +17,13 @@
 					'<h1>{{ content.title }}</h1>',
 					'<h3>{{ content.subtitle }}</h3>',
 					'{{#each content.text}}',
-					'<p>{{{ this }}}</p>',
+					'<p>{{ this }}</p>',
 					'{{/each}}',
+					'<ul id="intro-buttons">',
+						'{{#each content.buttons}}',
+						'<li><a class="btn btn-{{ btn }}" href="{{ href }}">{{ text }} <i class="fa fa-{{ icon }}"></i></a></li>',
+						'{{/each}}',
+					'</ul>',
 				'</div>',
 			].join(''),
 			data    : {
@@ -29,7 +34,10 @@
 					text    : [
 						'Hi! I am a sophomore at Stanford University from Anchorage, Alaska studying computer science and statistics. I am declared in Mathematical and Computational Science for my major, and am additionally pursuing a minor in history.',
 						'I am particularly interested in web development and sports analytics. You can learn more about me, projects I have worked on, and skills I possess in the tabs below.',
-						'Please feel free to <a href="mailto:contact@elishayer.com" target="_new">email me</a>.'
+					],
+					buttons : [
+						{ text: 'Download my resume', icon: 'download', btn: 'primary', href: './docs/EliShayer.Resume.pdf' },
+						{ text: 'Email me', icon: 'envelope', btn: 'success', href: 'mailto:contact@elishayer.com' },
 					]
 				}
 			}
