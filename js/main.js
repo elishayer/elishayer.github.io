@@ -56,8 +56,9 @@
 			].join(''),
 			data    : [
 				{ name: 'about', icon: 'info-circle' },
+				{ name: 'jobs', icon: 'briefcase' },
 				{ name: 'projects', icon: 'tasks' },
-				{ name: 'skills', icon: 'laptop' }
+				{ name: 'skills', icon: 'laptop' },
 			]
 		},
 		about: {
@@ -141,9 +142,10 @@
 							],
 							activities: [
 								{ name: 'Stanford Sports Analytics Club', details: [ 'Tech Officer, 2015-2016' ] },
-								{ name: 'Stanford Club Ultimate Frisbee', details: [] },
+								{ name: 'Code the Change', details: [] },
 								{ name: 'Stanford Democrats', details: [ 'Associate, 2015-2016' ] },
-								{ name: 'Stanford for Bernie', details: [ 'Events Team, 2015-2016' ] },
+								{ name: 'Stanford Club Ultimate Frisbee', details: [] },
+								{ name: 'Stanford Students for Bernie', details: [ 'Events Team, 2015-2016' ] },
 								{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2016' ] },
 								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring' ] }
 							]
@@ -225,6 +227,43 @@
 						// { name: 'Gifted Mentorship', description: 'TODO' },
 					]
 				}
+			]
+		},
+		jobs: {
+			template: [
+				'{{#each this}}',
+					'<div class="col-xs-12">',
+						'<h3>{{ company }} &ndash; {{ position }}</h3>',
+						'<h4>{{ location }}</h4>',
+						'<h4><i>{{ start }} to {{ end }}</i></h4>',
+						'<p>{{{ description }}}</p>',
+						'{{#each links}}',
+						'<a href="{{ href }}" target="_new"><i class="fa fa-link"></i> {{ title }}</a>',
+						'{{/each}}',
+					'</div>',
+				'{{/each}}',
+			].join(''),
+			data    : [
+				{
+					company    : 'Northern Economics, Inc.',
+					location   : 'Anchorage, Alaska',
+					position   : 'Temp Staff Analyst II',
+					start      : '6/2015',
+					end        : '9/2015',
+					description: 'Between my freshman and sophomore years of college I worked at Northern Economics for a second consecutive summer. I again co-authored several projects. I performed the modeling for the Palmer airport master plan financial report, projected migration using a radiation model, worked on a halibut regulation proejct, modeled energy and power usage, and worked on a transportation expansion project.',
+					links      : [
+						{ href: 'http://northerneconomics.com/elis-internship-experience-at-northern-economics/', title: 'Blog post about my internship experience' }
+					]
+				},
+				{
+					company    : 'Northern Economics, Inc.',
+					location   : 'Anchorage, Alaska',
+					position   : 'Temp Staff Analyst II',
+					start      : '5/2014',
+					end        : '9/2014',
+					description: 'In the summer following high school graduation, I worked at Northern Economics, a local economic consulting firm. I worked on projects as varied as a business plan for Suquamish Seafoods, projecting usage rages of a local utility entity, and a report on halibut bycatch. My work on these projects led to several reports I co-authored. I also worked on a project in which I investigated the impacts of demographics on economic confidence among Alaskans.',
+					links      : []
+				},
 			]
 		},
 		projects: {
@@ -319,8 +358,11 @@
 				{ tool: 'MongoDB', id: 'mongo', classes: [ 'CS42' ], projects: [ 'pitch-tracker' ], jobs: [] },
 				{ tool: 'd3.js', id: 'd3', classes: [], projects: [ 'graphicacy', 'pitch-tracker' ], jobs: [] },
 				{ tool: 'Bootstrap', id: 'bs', classes: [], projects: [ 'ssac-web', 'graphicacy', 'pitch-tracker' ], jobs: [] },
+				{ tool: 'Python', id: 'python', classes: [], projects: [ 'Code the Change' ], jobs: [] },
 				{ tool: 'R', id: 'r', classes: [], projects: [ 'diamond-dollars', 'pitch-tracker' ], jobs: [] },
-				{ tool: 'Excel', id: 'excel', classes: [], projects: [ 'frictional-cost' ], jobs: [ 'Northern Economics' ] }
+				{ tool: 'Excel', id: 'excel', classes: [], projects: [ 'frictional-cost' ], jobs: [ 'Northern Economics' ] },
+				{ tool: 'VBA', id: 'vba', classes: [], projects: [], jobs: [ 'Northern Economics' ] },
+				{ tool: 'STATA', id: 'stata', classes: [], projects: [], jobs: [ 'Northern Economics' ] },
 			]
 		},
 		'social-links': {
@@ -388,10 +430,13 @@
 	// helper to concatenate a list with proper syntax,
 	// with an optional mapping from the list contents to other strings
 	function concatenateList(list, map) {
-		// if a map is provided, transform each string using the map
+		// if a map is provided and key exists
+		// transform each string using the map
 		if (map) {
 			for (var i = 0; i < list.length; i++) {
-				list[i] = map[list[i]];
+				if (map.hasOwnProperty(list[i])) {
+					list[i] = map[list[i]];
+				}
 			}
 		}
 		if (list.length === 0) {
