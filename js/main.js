@@ -637,7 +637,7 @@
 	// set the .skill-details location based on the scroll location
 	$(window).scroll(function() {
 		if (currTabs.tab === "skills") {
-			setSkillDetailsLocation();
+			// setSkillDetailsLocation();
 		}
 	});
 
