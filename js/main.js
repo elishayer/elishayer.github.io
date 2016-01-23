@@ -30,7 +30,7 @@
 				image: { src: './images/eli-shayer-square.jpg', alt: 'Eli Shayer', id : 'portrait' },
 				content: {
 					title   : 'Eli Shayer',
-					subtitle: 'Stanford University class of 2018',
+					subtitle: 'Stanford University Class of 2018',
 					text    : [
 						'Hi! I am a sophomore at Stanford University from Anchorage, Alaska studying computer science and statistics. I am declared in Mathematical and Computational Science for my major, and am additionally pursuing a minor in history.',
 						'I am particularly interested in web development and sports analytics. You can learn more about me, projects I have worked on, and skills I possess in the tabs below.',
@@ -128,17 +128,21 @@
 								{ name: 'CS 107', title: 'Computer Organization and Systems', time: 'Freshman Spring' },
 								{ name: 'CS 42', title: 'Callback Me Maybe: Contemporary JavaScript', time: 'Freshman Spring' },
 								{ name: 'CS 103', title: 'Mathematical Foundations of Computing', time: 'Sophomore Autumn' },
+								{ name: 'CS 161', title: 'Design and Analysis of Algorithms', time: 'Sophomore Winter' },
+								{ name: 'STATS 116', title: 'Theory of Probability', time: 'Sophomore Autumn' },
+								{ name: 'STATS 217', title: 'Introduction to Stochastic Processes ', time: 'Sophomore Winter' },
 								{ name: 'MATH 51', title: 'Linear Algebra and Differential Calculus of Several Variables', time: 'Freshman Autumn' },
 								{ name: 'MATH 52', title: 'Integral Calculus of Several Variables', time: 'Freshman Winter' },
 								{ name: 'MATH 53', title: 'Ordinary Differential Equations with Linear Algebra', time: 'Freshman Spring' },
-								{ name: 'STATS 116', title: 'Theory of Probability', time: 'Sophomore Autumn' },
 								{ name: 'PHYSICS 41', title: 'Mechanics', time: 'Freshman Winter' },
 								{ name: 'THINK 11', title: 'Bioethical Challenges of New Technology', time: 'Freshman Winter' },
 								{ name: 'PWR 1CK', title: 'Investigation the News: Journalism, Technology, & the Future', time: 'Freshman Autumn' },
 								{ name: 'PWR 2AH', title: 'Ethnic Narratives and the Rhetoric of American Identity', time: 'Sophomore Autumn' },
 								{ name: 'FRENLANG 3', title: 'First-Year French, Third time', time: 'Freshman Spring' },
-								{ name: 'HISTORY 50A', title: 'Colonial and Revolutionary America', time: 'Freshman Spring' },
-								{ name: 'HISTORY 50C', title: 'The United States in the Twentieth Century', time: 'Sophomore Autumn' },
+								{ name: 'HISTORY 50A', title: 'Colonial and Revolutionary America', time: 'Sophomore Autumn' },
+								{ name: 'HISTORY 50B', title: '19th Century America', time: 'Sophomore Winter' },
+								{ name: 'HISTORY 50C', title: 'The United States in the Twentieth Century', time: 'Freshman Spring' },
+								{ name: 'HISTORY 55Q', title: 'The Origins of the Modern American City', time: 'Sophomore Winter' },
 							],
 							activities: [
 								{ name: 'Stanford Sports Analytics Club', details: [ 'Tech Officer, 2015-2016' ] },
@@ -147,7 +151,7 @@
 								{ name: 'Stanford Club Ultimate Frisbee', details: [] },
 								{ name: 'Stanford Students for Bernie', details: [ 'Events Team, 2015-2016' ] },
 								{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2016' ] },
-								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring' ] }
+								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring', 'Volleyball, Sophomore Winter' ] }
 							]
 						},
 						{
@@ -283,6 +287,14 @@
 				'{{/each}}',
 			].join(''),
 			data    : [
+				{
+					name       : 'TruMedia Hackathon: The Next Pitch',
+					id         : 'graphicacy',
+					award      : 'gold',
+					link       : 'http://elishayer.com/TruMedia-MLB-Hackathon/',
+					tools      : [ 'd3.js', 'AngularJS', 'Bootstrap' ],
+					description: 'A visualization of pitch selection tendencies, for which I placed in first in the Engineer division, after assembling the submission in just several days.'
+				},
 				{
 					name       : 'Graphicacy Major League Data Challenege',
 					id         : 'graphicacy',
