@@ -171,6 +171,20 @@ a[data-toggle="popover"], a[data-toggle="tooltip"] {
 	color: inherit;
 }
 
+.bottom-right {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	color: inherit;
+}
+
+.bottom-left {
+	position: absolute;
+	left: 5px;
+	bottom: 5px;
+	color: inherit;
+}
+
 /* ----- Styles for the skills tab ----- */
 #skill-names>.tile-wrapper {
 	height: 40px;

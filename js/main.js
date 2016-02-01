@@ -151,7 +151,7 @@
 								{ name: 'Stanford Club Ultimate Frisbee', details: [] },
 								{ name: 'Stanford Students for Bernie', details: [ 'Events Team, 2015-2016' ] },
 								{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2016' ] },
-								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring', 'Volleyball, Sophomore Winter' ] }
+								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring', 'Volleyball, Sophomore Winter', 'Basketball, Sophomore Winter' ] }
 							]
 						},
 						{
@@ -282,6 +282,7 @@
 							'<p>{{{ description }}}</p>',
 							'{{#if link}}<a href="{{ link }}" target="_new"><i class="fa fa-link top-right"></i></a>{{/if}}',
 							'{{#if award}}<i class="fa fa-trophy {{ award }} top-left"></i>{{/if}}',
+							'{{#if video}}<a href="{{ video }}" target="_new"><i class="fa fa-video-camera bottom-right"></i></a>{{/if}}',
 						'</div>',
 					'</div>',
 				'{{/each}}',
@@ -292,6 +293,7 @@
 					id         : 'graphicacy',
 					award      : 'gold',
 					link       : 'http://elishayer.com/TruMedia-MLB-Hackathon/',
+					video      : 'https://youtu.be/Z1eSpB_aJjg',
 					tools      : [ 'd3.js', 'AngularJS', 'Bootstrap' ],
 					description: 'A visualization of pitch selection tendencies, for which I placed in first in the Engineer division, after assembling the submission in just several days.'
 				},
