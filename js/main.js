@@ -293,7 +293,6 @@
 					id         : 'graphicacy',
 					award      : 'gold',
 					link       : 'http://elishayer.com/TruMedia-MLB-Hackathon/',
-					video      : 'https://youtu.be/Z1eSpB_aJjg',
 					tools      : [ 'd3.js', 'AngularJS', 'Bootstrap' ],
 					description: 'A visualization of pitch selection tendencies, for which I placed in first in the Engineer division, after assembling the submission in just several days.'
 				},
@@ -302,6 +301,7 @@
 					id         : 'graphicacy',
 					award      : 'silver',
 					link       : 'http://cardinalanalytics.github.io/mlb-challenge/',
+					video      : 'https://youtu.be/Z1eSpB_aJjg',
 					tools      : [ 'd3.js', 'Bootstrap', 'jQuery' ],
 					description: 'A group project visualization of baseball careers for which I wrote all the code. The submission won 2nd place, as announced <a href="http://www.majorleaguedatachallenge.com/award-winners-announcement" target="_new">here</a>.'
 				},
