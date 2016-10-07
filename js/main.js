@@ -32,8 +32,8 @@
 					title   : 'Eli Shayer',
 					subtitle: 'Stanford University Class of 2018',
 					text    : [
-						'Hi! I am a sophomore at Stanford University from Anchorage, Alaska studying computer science and statistics. I am declared in Mathematical and Computational Science for my major, and am additionally pursuing a minor in history.',
-						'I am particularly interested in web development and sports analytics. You can learn more about me, projects I have worked on, and skills I possess in the tabs below.',
+						'Hi! I am a junior at Stanford University from Anchorage, Alaska studying statistics and computer science in the Mathematical and Computational Science program. I am also pursuing a minor in history.',
+						'My interests are most prominently machine learning and web development. I have primarily applied these skills in the realm of sports analytics. You can learn more about me, projects I have worked on, and skills I possess in the tabs below.',
 					],
 					buttons : [
 						{ text: 'Download my resume', icon: 'download', btn: 'primary', href: './docs/EliShayer.Resume.pdf' },
@@ -123,17 +123,26 @@
 							name: 'Stanford University',
 							grad: '2018',
 							classes: [
+								{ name: 'STATS 50', title: 'Mathematics of Sports', time: 'Sophomore Spring' },
+								{ name: 'STATS 116', title: 'Theory of Probability', time: 'Sophomore Autumn' },
+								{ name: 'STATS 200', title: 'Introduction to Statistical Inference ', time: 'Junior Autumn' },
+								{ name: 'STATS 202', title: 'Data Mining and Analysis ', time: 'Junior Autumn' },
+								{ name: 'STATS 217', title: 'Introduction to Stochastic Processes ', time: 'Sophomore Winter' },
+								{ name: 'CS 42', title: 'Callback Me Maybe: Contemporary JavaScript', time: 'Freshman Spring' },
 								{ name: 'CS 106A', title: 'Programming Methodology', time: 'Freshman Autumn' },
 								{ name: 'CS 106X', title: 'Programming Abstractions (Accelerated)', time: 'Freshman Winter' },
 								{ name: 'CS 107', title: 'Computer Organization and Systems', time: 'Freshman Spring' },
-								{ name: 'CS 42', title: 'Callback Me Maybe: Contemporary JavaScript', time: 'Freshman Spring' },
 								{ name: 'CS 103', title: 'Mathematical Foundations of Computing', time: 'Sophomore Autumn' },
+								{ name: 'CS 110', title: 'Principles of Computer Systems', time: 'Sophomore Spring' },
+								{ name: 'CS 145', title: 'Introduction to Databases', time: 'Junior Autumn' },
 								{ name: 'CS 161', title: 'Design and Analysis of Algorithms', time: 'Sophomore Winter' },
-								{ name: 'STATS 116', title: 'Theory of Probability', time: 'Sophomore Autumn' },
-								{ name: 'STATS 217', title: 'Introduction to Stochastic Processes ', time: 'Sophomore Winter' },
+								{ name: 'CS 227B', title: 'General Game Playing', time: 'Sophomore Winter' },
+								{ name: 'CS 229', title: 'Machine Learning', time: 'Sophomore Spring' },
 								{ name: 'MATH 51', title: 'Linear Algebra and Differential Calculus of Several Variables', time: 'Freshman Autumn' },
 								{ name: 'MATH 52', title: 'Integral Calculus of Several Variables', time: 'Freshman Winter' },
 								{ name: 'MATH 53', title: 'Ordinary Differential Equations with Linear Algebra', time: 'Freshman Spring' },
+								{ name: 'MATH 113', title: 'Linear Algebra', time: 'Sophomore Spring' },
+								{ name: 'MS&E 211', title: 'Linear and Nonlinear Optimization', time: 'Junior Autumn' },
 								{ name: 'PHYSICS 41', title: 'Mechanics', time: 'Freshman Winter' },
 								{ name: 'THINK 11', title: 'Bioethical Challenges of New Technology', time: 'Freshman Winter' },
 								{ name: 'PWR 1CK', title: 'Investigation the News: Journalism, Technology, & the Future', time: 'Freshman Autumn' },
@@ -143,15 +152,18 @@
 								{ name: 'HISTORY 50B', title: '19th Century America', time: 'Sophomore Winter' },
 								{ name: 'HISTORY 50C', title: 'The United States in the Twentieth Century', time: 'Freshman Spring' },
 								{ name: 'HISTORY 55Q', title: 'The Origins of the Modern American City', time: 'Sophomore Winter' },
+								{ name: 'HISTORY 147', title: 'History of South Africa', time: 'Junior Autumn' },
 							],
 							activities: [
-								{ name: 'Stanford Sports Analytics Club', details: [ 'Tech Officer, 2015-2016' ] },
+								{ name: 'Stanford Sports Analytics Club', details: [ 'President, 2016-2017', 'Tech Officer, 2015-2016' ] },
 								{ name: 'Code the Change', details: [] },
-								{ name: 'Stanford Democrats', details: [ 'Associate, 2015-2016' ] },
-								{ name: 'Stanford Club Ultimate Frisbee', details: [] },
+								{ name: 'Stanford Democrats', details: [ 'Newsletter Editor, 2016-2017', 'Newsletter Associate, 2015-2016' ] },
+								{ name: 'Stanford Club Ultimate Frisbee', details: [ 'Captain, 2016-2017' ] },
 								{ name: 'Stanford Students for Bernie', details: [ 'Events Team, 2015-2016' ] },
 								{ name: 'Challah for Hunger', details: [ 'Dorm Distributor, 2015-2016' ] },
-								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring', 'Volleyball, Sophomore Winter', 'Basketball, Sophomore Winter' ] }
+								{ name: 'Intramural Sports', details: [ 'Basketball, Freshman Winter (Champions)', 'Basketball, Freshman Spring', 'Dodgeball, Freshman Spring', 'Volleyball, Sophomore Winter', 'Basketball, Sophomore Winter' ] },
+								{ name: 'CS + Mental Health', details: [] },
+								{ name: 'Kids with Dreams', details: [] },
 							]
 						},
 						{
@@ -227,8 +239,7 @@
 						{ name: 'Anchorage Youth Symphony', description: 'I played french horn in the Anchorage Youth Symphony my freshman, sophomore, and junior years of high school. My favorite peices we performed were Dvo&#345;&#225;k&#39;s New World Symphony and Tchaikovsky&#39;s Fifth Symphony.', date: '2010-2014' },
 						{ name: 'Boy Scouts of America', description: 'As a Boy Scout I served as Senior Patrol Leader and Assistant Senior Patrol Leader for my troop in 2010. I earned the Eagle Scout badge in November 2011.', date: '2006-2013' },
 						{ name: 'National Youth Leadership Training', description: 'After completing the course as a learner in 2009, I served on the youth staff of National Youth Leadership Training (NYLT) as an Instructor (2010), Assistant Course Leader (2012), and Course Leader (2013). The camp is a week-long, youth-led summer conference to advance the leadership abilities of 48 learners. As Course Leader I prepared the 12-member youth staff with monthly meetings and presented several hour-long lectures to the fully assembled conference.', date: '2010, 2012, and 2013' },
-						{ name: 'Conference of Young Alaskans', description: 'I was selected as a delegate to the Conference of Young Alaskans, an event in which youth delegates from throughout the state discuss the issues relevant to the state and put forward suggestions as to how to address the issues.', date: '2012' },
-						// { name: 'Gifted Mentorship', description: 'TODO' },
+						{ name: 'Conference of Young Alaskans', description: 'I was selected as a delegate to the Conference of Young Alaskans, an event in which youth delegates from throughout the state discuss the issues relevant to the state and put forward suggestions as to how to address the issues.', date: '2012' }
 					]
 				}
 			]
@@ -237,9 +248,9 @@
 			template: [
 				'{{#each this}}',
 					'<div class="col-xs-12">',
-						'<h3>{{ company }} &ndash; {{ position }}</h3>',
+						'{{#if company}}<h3>{{ company }} &ndash; {{ position }}</h3>{{/if}}',
 						'<h4>{{ location }}</h4>',
-						'<h4><i>{{ start }} to {{ end }}</i></h4>',
+						'<h4><i>{{ start }}</i> to <i>{{ end }}</i></h4>',
 						'<p>{{{ description }}}</p>',
 						'{{#each links}}',
 						'<a href="{{ href }}" target="_new"><i class="fa fa-link"></i> {{ title }}</a>',
@@ -248,6 +259,24 @@
 				'{{/each}}',
 			].join(''),
 			data    : [
+				{
+					company    : 'Chicago Cubs',
+					position   : 'Research & Development Intern',
+					start      : '6/2016',
+					end        : 'Present',
+					description: 'The summer between my sophomore and junior years at Stanford I worked in Chicago for the Cubs. For the Cubs I worked primarily as a developer, contributing to the data processing and warehousing as well as the internal web application. I am continuing to remotely work for the club during the school year in a part-time role.',
+					links      : [
+						{ href: 'http://www.espn.com/espn/feature/story/_/id/17588399/theo-epstein-mastermind-cubs-season', title: 'ESPN article about Theo Epstein with a cameo by me. As Theo says in the article, "Eli is a live, in-the-flesh intern."'}
+					]
+				},
+				{
+					company    : 'AZ Alkmaar',
+					position   : 'Data-Analyst',
+					start      : '1/2016',
+					end        : 'Present',
+					description: 'Since the beginning of 2016 I have worked for AZ Alkmaar, a soccer club in the Dutch Eredivisie. My role with the club involves importing and warehousing data, data analysis, and presentation via a web application.',
+					links      : []
+				},
 				{
 					company    : 'Northern Economics, Inc.',
 					location   : 'Anchorage, Alaska',
@@ -356,15 +385,19 @@
 					'<div id="{{ id }}-details">{{skillsDetail this}}</div>',
 					'{{/each}}',
 					'<div id="skill-details-intro">',
-						'Hover over or click on any of the skills on the left to see the ways in which I have utilized these skills!',
+						'<span>Hover over or click on any of the skills on the left to see the ways in which I have utilized these skills!</span>',
 					'</div>',
 				'</div>',
 			].join(''),
 			data    : [
-				{ tool: 'C++', id: 'cpp', classes: [ 'CS106X' ], projects: [ 'bat-eighth' ], jobs: [] },
-				{ tool: 'Java', id: 'java', classes: [ 'CS106A' ], projects: [], jobs: [] },
-				{ tool: 'C', id: 'c', classes: [ 'CS107' ], projects: [], jobs: [] },
-				{ tool: 'JavaScript', id: 'js', classes: [ 'CS42' ], projects: [ 'graphicacy', 'ssac-web', 'pitch-tracker' ], jobs: [] },
+				{ tool: 'JavaScript', id: 'js', classes: [ 'CS42' ], projects: [ 'graphicacy', 'ssac-web', 'pitch-tracker' ], jobs: [ 'Chicago Cubs', 'AZ Alkmaar'] },
+				{ tool: 'R', id: 'r', classes: [ 'STATS50', 'STATS200', 'STATS202' ], projects: [ 'diamond-dollars', 'pitch-tracker' ], jobs: [ 'Chicago Cubs', 'AZ Alkmaar'] },
+				{ tool: 'Python', id: 'python', classes: [], projects: [ 'Code the Change' ], jobs: [ 'Chicago Cubs', 'AZ Alkmaar'] },
+				{ tool: 'SQL', id: 'sql', classes: [ 'CS142' ], projects: [], jobs: ['Chicago Cubs'] },
+				{ tool: 'C++', id: 'cpp', classes: [ 'CS106X', 'CS110' ], projects: [ 'bat-eighth' ], jobs: [] },
+				{ tool: 'C', id: 'c', classes: [ 'CS107', 'CS110' ], projects: [], jobs: [] },
+				{ tool: 'Java', id: 'java', classes: [ 'CS106A', 'CS227B' ], projects: [], jobs: [] },
+				{ tool: 'MATLAB', id: 'matlab', classes: [ 'CS229' ], projects: [], jobs: [] },
 				{ tool: 'jQuery', id: 'jquery', classes: [ 'CS42' ], projects: [ 'graphicacy', 'ssac-web' ], jobs: [] },
 				{ tool: 'Node.js', id: 'node', classes: [ 'CS42' ], projects: [ 'pitch-tracker' ], jobs: [] },
 				{ tool: 'Express', id: 'express', classes: [ 'CS42' ], projects: [ 'pitch-tracker' ], jobs: [] },
@@ -372,8 +405,6 @@
 				{ tool: 'MongoDB', id: 'mongo', classes: [ 'CS42' ], projects: [ 'pitch-tracker' ], jobs: [] },
 				{ tool: 'd3.js', id: 'd3', classes: [], projects: [ 'graphicacy', 'pitch-tracker' ], jobs: [] },
 				{ tool: 'Bootstrap', id: 'bs', classes: [], projects: [ 'ssac-web', 'graphicacy', 'pitch-tracker' ], jobs: [] },
-				{ tool: 'Python', id: 'python', classes: [], projects: [ 'Code the Change' ], jobs: [] },
-				{ tool: 'R', id: 'r', classes: [], projects: [ 'diamond-dollars', 'pitch-tracker' ], jobs: [] },
 				{ tool: 'Excel', id: 'excel', classes: [], projects: [ 'frictional-cost' ], jobs: [ 'Northern Economics' ] },
 				{ tool: 'VBA', id: 'vba', classes: [], projects: [], jobs: [ 'Northern Economics' ] },
 				{ tool: 'STATA', id: 'stata', classes: [], projects: [], jobs: [ 'Northern Economics' ] },
